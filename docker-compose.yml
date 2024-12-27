@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  api_surveys:
+    build: surveys
+    mem_limit: 512m
+    ports:
+      - "8080:8080"
+    
+    environment:
+      DB_URL: jdbc:mysql://db_surveys:3306/surveys?createDatabaseIfNotExist=true&serverTimezone=UTC
+      DB_USERNAME: root
+      DB_PASSWORD: 1234
+    
+    restart: always
+    depends_on:
+      db_surveys:
+        condition: service_healthy
+  
+  db_surveys:
+    image: mysql:9.1.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_PASSWORD: 1234
+      MYSQL_DATABASE: surveys
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 1s
+      timeout: 1s
+      retries: 10
