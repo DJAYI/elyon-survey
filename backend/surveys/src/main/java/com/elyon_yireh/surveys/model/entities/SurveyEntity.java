@@ -21,6 +21,6 @@ public class SurveyEntity {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     DepartmentEntity departmentEntity;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "surveyEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Set<QuestionEntity> questionEntities;
 }

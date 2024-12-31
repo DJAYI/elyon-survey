@@ -21,9 +21,10 @@ public class QuestionEntity {
     @Column(name = "quest_enunciado")
     String statement;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "questionEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Set<AnswerEntity> answerEntities;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "survey_id")
     SurveyEntity surveyEntity;
 }

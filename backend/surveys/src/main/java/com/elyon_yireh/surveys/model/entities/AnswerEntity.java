@@ -22,5 +22,6 @@ public class AnswerEntity {
     Integer value;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "question_id")
     QuestionEntity questionEntity;
 }
