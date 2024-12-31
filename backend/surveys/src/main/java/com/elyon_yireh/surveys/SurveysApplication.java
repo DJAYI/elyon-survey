@@ -1,5 +1,6 @@
 package com.elyon_yireh.surveys;
 
+import com.elyon_yireh.surveys.model.entities.DepartmentEntity;
 import com.elyon_yireh.surveys.security.entities.PermissionEntity;
 import com.elyon_yireh.surveys.security.entities.RoleEntity;
 import com.elyon_yireh.surveys.security.entities.UserEntity;
@@ -22,6 +23,14 @@ public class SurveysApplication {
 	@Bean
 	CommandLineRunner init (UserRepository userRepository) {
 		return args -> {
+			DepartmentEntity sys = DepartmentEntity.builder().code("SYS").name("Sistemas").build();
+			DepartmentEntity ctr = DepartmentEntity.builder().code("CTR").name("Cartera").build();
+			DepartmentEntity sys = DepartmentEntity.builder().code("SYS").name("Sistemas").build();
+			DepartmentEntity sys = DepartmentEntity.builder().code("SYS").name("Sistemas").build();
+			DepartmentEntity sys = DepartmentEntity.builder().code("SYS").name("Sistemas").build();
+			DepartmentEntity sys = DepartmentEntity.builder().code("SYS").name("Sistemas").build();
+			DepartmentEntity sys = DepartmentEntity.builder().code("SYS").name("Sistemas").build();
+			DepartmentEntity sys = DepartmentEntity.builder().code("SYS").name("Sistemas").build();
 
 			PermissionEntity readPermission = PermissionEntity.builder().name("READ").build();
 			PermissionEntity createPermission = PermissionEntity.builder().name("CREATE").build();

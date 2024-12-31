@@ -32,11 +32,6 @@ public class SecurityConfig {
         return httpSecurity
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.disable())
-                .authorizeHttpRequests(http -> {
-                    http.requestMatchers(HttpMethod.GET, "api/v1/auth").hasRole("ADMIN");
-                    http.requestMatchers(HttpMethod.POST, "api/v1/auth/login").permitAll();
-                    http.anyRequest().denyAll();
-                })
                 .addFilterBefore(new JwtTokenValidator(jwtUtils), BasicAuthenticationFilter.class)
                 .build();
     }

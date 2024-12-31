@@ -4,6 +4,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record CreateSurvey(
-        @NotNull int departmentId
+        @NotNull Long departmentId
 ) {
 }
