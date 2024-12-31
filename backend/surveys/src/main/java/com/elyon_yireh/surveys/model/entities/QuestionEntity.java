@@ -1,5 +1,7 @@
 package com.elyon_yireh.surveys.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,10 +23,8 @@ public class QuestionEntity {
     @Column(name = "quest_enunciado")
     String statement;
 
-    @OneToMany(mappedBy = "questionEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "tb_questions_answers", joinColumns = @JoinColumn(name = "question_id"), inverseJoinColumns = @JoinColumn(name = "answer_id"))
     Set<AnswerEntity> answerEntities;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "survey_id")
-    SurveyEntity surveyEntity;
 }

@@ -3,6 +3,7 @@ package com.elyon_yireh.surveys.model.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Table(name = "tb_responses")
@@ -16,12 +17,18 @@ import java.util.Set;
 public class ResponseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    Set<RespondentEntity> respondentEntity;
+    private Set<RespondentEntity> respondentEntity = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    Set<AnswerEntity> answerEntities;
+    private Set<SurveyEntity> surveyEntity = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<QuestionEntity> questionEntities = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<AnswerEntity> answerEntities = new HashSet<>();
 
 }

@@ -1,5 +1,6 @@
 package com.elyon_yireh.surveys.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,7 +22,4 @@ public class AnswerEntity {
     @Column(name = "ans_valor")
     Integer value;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "question_id")
-    QuestionEntity questionEntity;
 }

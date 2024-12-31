@@ -1,5 +1,6 @@
 package com.elyon_yireh.surveys.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,6 +22,7 @@ public class SurveyEntity {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     DepartmentEntity departmentEntity;
 
-    @OneToMany(mappedBy = "surveyEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "tb_surveys_questions", joinColumns = @JoinColumn(name = "survey_id"), inverseJoinColumns = @JoinColumn(name = "question_id"))
     Set<QuestionEntity> questionEntities;
 }
