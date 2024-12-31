@@ -132,7 +132,6 @@ public class SurveyService {
 
         if (survey.getQuestionEntities().contains(question) && question.getAnswerEntities().contains(answer)){
             question.getAnswerEntities().remove(answer);
-            answer.setQuestionEntity(null);
             questionRepository.save(question); // Guardar cambios
             answerRepository.delete(answer); // Eliminar de la BD
         } else {
