@@ -1,7 +1,9 @@
 package com.elyon_yireh.surveys.controller;
 
+import com.elyon_yireh.surveys.model.entities.AnswerEntity;
 import com.elyon_yireh.surveys.model.entities.QuestionEntity;
 import com.elyon_yireh.surveys.model.entities.SurveyEntity;
+import com.elyon_yireh.surveys.model.schemas.create.CreateAnswer;
 import com.elyon_yireh.surveys.model.schemas.create.CreateQuestion;
 import com.elyon_yireh.surveys.model.schemas.create.CreateSurvey;
 import com.elyon_yireh.surveys.repository.mysql.SurveyRepository;
@@ -23,8 +25,6 @@ public class SurveyController {
 
     @Autowired
     private SurveyService surveyService;
-    @Autowired
-    private SurveyRepository surveyRepository;
 
     @GetMapping()
     @PreAuthorize("permitAll()")
@@ -88,4 +88,40 @@ public class SurveyController {
     public QuestionEntity updateQuestion(@Valid @PathVariable Long questionId, @Valid @PathVariable UUID id, @Valid CreateQuestion question) throws Exception {
         return surveyService.updateQuestion(questionId, id, question.statement());
     }
+
+    @GetMapping("/{id}/questions/{questionId}/answers")
+    @PreAuthorize("permitAll()")
+    @ResponseStatus(HttpStatus.OK)
+    public List<AnswerEntity> findAllAnswersFromQuestion(@Valid @PathVariable UUID id, @Valid @PathVariable Long questionId) throws Exception{
+        return surveyService.findAllAnswersFromQuestion(id, questionId);
+    }
+
+    @GetMapping("/{id}/questions/{questionId}/answers/{answerId}")
+    @PreAuthorize("permitAll()")
+    @ResponseStatus(HttpStatus.OK)
+    public AnswerEntity findAnswerFromQuestion(@Valid @PathVariable UUID id, @Valid @PathVariable Long questionId, @Valid @PathVariable Long answerId) throws Exception{
+        return surveyService.findAnswerFromQuestion(id, questionId, answerId);
+    }
+
+    @PostMapping("/{id}/questions/{questionId}/answers")
+    @PreAuthorize("hasAuthority('CREATE')")
+    @ResponseStatus(HttpStatus.CREATED)
+    public QuestionEntity addAnswerToQuestion(@Valid @PathVariable UUID id, @Valid @PathVariable Long questionId, @Valid @RequestBody CreateAnswer answer) throws Exception {
+        return surveyService.addAnswerToQuestion(id, questionId, answer);
+    }
+
+    @DeleteMapping("/{id}/questions/{questionId}/answers/{answerId}")
+    @PreAuthorize("hasAuthority('DELETE')")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteAnswer(@Valid @PathVariable UUID id, @Valid @PathVariable Long questionId, @Valid @PathVariable Long answerId) throws Exception{
+        surveyService.deleteAnswerFromQuestion(id, questionId, answerId);
+    }
+
+    @PutMapping("/{id}/questions/{questionId}/answers/{answerId}")
+    @PreAuthorize("hasAuthority('UPDATE')")
+    @ResponseStatus(HttpStatus.CREATED)
+    public AnswerEntity updateAnswer(@Valid @PathVariable UUID id, @Valid @PathVariable Long questionId, @Valid @PathVariable Long answerId, @Valid CreateAnswer answer) throws Exception {
+        return surveyService.updateAnswerFromQuestion(id, questionId, answerId, answer);
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.elyon_yireh.surveys;
 
 import com.elyon_yireh.surveys.model.entities.DepartmentEntity;
+import com.elyon_yireh.surveys.repository.mysql.DepartmentRepository;
 import com.elyon_yireh.surveys.security.entities.PermissionEntity;
 import com.elyon_yireh.surveys.security.entities.RoleEntity;
 import com.elyon_yireh.surveys.security.entities.UserEntity;
@@ -21,16 +22,19 @@ public class SurveysApplication {
 	}
 
 	@Bean
-	CommandLineRunner init (UserRepository userRepository) {
+	CommandLineRunner init (UserRepository userRepository, DepartmentRepository departmentRepository) {
 		return args -> {
-			DepartmentEntity sys = DepartmentEntity.builder().code("SYS").name("Sistemas").build();
-			DepartmentEntity ctr = DepartmentEntity.builder().code("CTR").name("Cartera").build();
-			DepartmentEntity sys = DepartmentEntity.builder().code("SYS").name("Sistemas").build();
-			DepartmentEntity sys = DepartmentEntity.builder().code("SYS").name("Sistemas").build();
-			DepartmentEntity sys = DepartmentEntity.builder().code("SYS").name("Sistemas").build();
-			DepartmentEntity sys = DepartmentEntity.builder().code("SYS").name("Sistemas").build();
-			DepartmentEntity sys = DepartmentEntity.builder().code("SYS").name("Sistemas").build();
-			DepartmentEntity sys = DepartmentEntity.builder().code("SYS").name("Sistemas").build();
+			DepartmentEntity sistemas = DepartmentEntity.builder().code("SYS").name("Dirección TI").build();
+			DepartmentEntity calidad = DepartmentEntity.builder().code("CAL").name("Dirección de Calidad").build();
+			DepartmentEntity talentoHumano = DepartmentEntity.builder().code("TH").name("Dirección del Talento Humano").build();
+			DepartmentEntity academica = DepartmentEntity.builder().code("ACA").name("Dirección Académica").build();
+			DepartmentEntity bienestarInstitucional = DepartmentEntity.builder().code("BI").name("Dirección Bienestar Institucional").build();
+			DepartmentEntity administrativa = DepartmentEntity.builder().code("ADM").name("Dirección Administrativa").build();
+			DepartmentEntity mercadeo = DepartmentEntity.builder().code("MER").name("Dirección Mercadeo").build();
+			DepartmentEntity financiera = DepartmentEntity.builder().code("FIN").name("Dirección Financiera").build();
+
+			departmentRepository.saveAll(List.of(sistemas, calidad, talentoHumano, academica, bienestarInstitucional, administrativa, mercadeo, financiera));
+
 
 			PermissionEntity readPermission = PermissionEntity.builder().name("READ").build();
 			PermissionEntity createPermission = PermissionEntity.builder().name("CREATE").build();
