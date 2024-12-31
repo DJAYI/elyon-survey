@@ -1,0 +1,52 @@
+## AUTH
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{ "username": "admin", "password": "admin" }
+
+### Get all surveys
+GET http://localhost:8080/api/v1/surveys
+
+### Post a survey
+POST http://localhost:8080/api/v1/surveys
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBVVRIMEpXVC1CQUNLRU5EIiwic3ViIjoiYWRtaW4iLCJhdXRob3JpdGllcyI6IkNSRUFURSxERUxFVEUsUkVBRCxST0xFX0FETUlOLFVQREFURSIsImlhdCI6MTczNTYyNjMwNywiZXhwIjoxNzM1NjI4MTA3LCJqdGkiOiJkMGJiNWRhNi0wZGMwLTQwZjctYjQ4Ni1lYjNkZTY2MTk5NGQiLCJuYmYiOjE3MzU2MjYzMDd9.7zdY8TrOPjywbQoH4yqTfAXlO5o_aVbSogbyIB5Nrhk
+
+{
+  "departmentId": 1
+}
+
+### Get a survey by id
+GET http://localhost:8080/api/v1/surveys/8d46917d-647a-4090-9e9c-fa07a000d5a4
+
+### Get all questions from survey
+GET http://localhost:8080/api/v1/surveys/8d46917d-647a-4090-9e9c-fa07a000d5a4/questions
+
+### Post a question to a survey
+POST http://localhost:8080/api/v1/surveys/8d46917d-647a-4090-9e9c-fa07a000d5a4/questions
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBVVRIMEpXVC1CQUNLRU5EIiwic3ViIjoiYWRtaW4iLCJhdXRob3JpdGllcyI6IkNSRUFURSxERUxFVEUsUkVBRCxST0xFX0FETUlOLFVQREFURSIsImlhdCI6MTczNTYyNjMwNywiZXhwIjoxNzM1NjI4MTA3LCJqdGkiOiJkMGJiNWRhNi0wZGMwLTQwZjctYjQ4Ni1lYjNkZTY2MTk5NGQiLCJuYmYiOjE3MzU2MjYzMDd9.7zdY8TrOPjywbQoH4yqTfAXlO5o_aVbSogbyIB5Nrhk
+
+{
+  "statement": "What is your name?"
+}
+
+### Get a question by id
+GET http://localhost:8080/api/v1/surveys/8d46917d-647a-4090-9e9c-fa07a000d5a4/questions/1
+
+### Get all answers from a question
+GET http://localhost:8080/api/v1/surveys/8d46917d-647a-4090-9e9c-fa07a000d5a4/questions/1/answers
+
+### Post an answer to a question
+POST http://localhost:8080/api/v1/surveys/8d46917d-647a-4090-9e9c-fa07a000d5a4/questions/1/answers
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBVVRIMEpXVC1CQUNLRU5EIiwic3ViIjoiYWRtaW4iLCJhdXRob3JpdGllcyI6IkNSRUFURSxERUxFVEUsUkVBRCxST0xFX0FETUlOLFVQREFURSIsImlhdCI6MTczNTYyNjMwNywiZXhwIjoxNzM1NjI4MTA3LCJqdGkiOiJkMGJiNWRhNi0wZGMwLTQwZjctYjQ4Ni1lYjNkZTY2MTk5NGQiLCJuYmYiOjE3MzU2MjYzMDd9.7zdY8TrOPjywbQoH4yqTfAXlO5o_aVbSogbyIB5Nrhk
+
+{
+  "statement": "John Doe",
+  "value": 1
+}
+
+### Get an answer by id
+GET http://localhost:8080/api/v1/surveys/8d46917d-647a-4090-9e9c-fa07a000d5a4/questions/1/answers/1
+

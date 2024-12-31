@@ -1,8 +1,7 @@
-version: '3'
 
 services:
   api_surveys:
-    build: surveys
+    build: backend/surveys
     mem_limit: 512m
     ports:
       - "8080:8080"
