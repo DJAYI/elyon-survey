@@ -1,0 +1,14 @@
+@for (question of dataService.questions; track $index) {
+<p class="text-lg font-semibold">{{ question.statement }}</p>
+
+  @for (answer of question.answerEntities; track $index) {
+    <div class="flex items-stretch">
+      <input type="radio" id="{{ question.id }}" name="answer" value="{{ answer.value }}" (change)="handleChooseAnswer(answer.id ? answer.id : 0, question.id ? question.id : 0)" />
+      <label for="{{ answer.id }}" class="ml-2">{{ answer.statement }}</label>
+    </div>
+  }
+} 
+<div class="flex justify-between mt-4">
+  <button (click)="handleSubmit()">Enviar</button>
+  <button (click)="handlePreviousStep()">Atrás</button>
+</div>

@@ -1,0 +1,7 @@
+@switch (stepperService.currentStep) { @case (0) {
+<app-step-one></app-step-one>
+} @case (1) {
+<app-step-two [surveys]="dataService.surveys"></app-step-two>
+} @case (2) {
+<app-step-three [surveyId]="stepperService.response.surveyId"></app-step-three>
+} }

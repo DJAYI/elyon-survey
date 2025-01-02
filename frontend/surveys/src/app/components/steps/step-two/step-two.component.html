@@ -1,0 +1,11 @@
+@for (survey of surveys(); track $index) {
+<p class="text-lg font-semibold">
+  {{ survey.departmentEntity?.name }}
+</p>
+<button (click)="handleSelectSurvey(survey.id)">choose</button>
+}
+
+<div class="">
+  <button (click)="handlePreviousStep()">Atrás</button>
+  <button (click)="handleNextStep()">Siguiente</button>
+</div>
