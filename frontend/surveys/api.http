@@ -1,0 +1,74 @@
+## AUTH
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{ "username": "admin", "password": "admin" }
+
+### Get all surveys
+GET http://localhost:8080/api/v1/surveys
+
+### Post a survey
+POST http://localhost:8080/api/v1/surveys
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBVVRIMEpXVC1CQUNLRU5EIiwic3ViIjoiYWRtaW4iLCJhdXRob3JpdGllcyI6IkNSRUFURSxERUxFVEUsUkVBRCxST0xFX0FETUlOLFVQREFURSIsImlhdCI6MTczNTc5NzgzNiwiZXhwIjoxNzM1Nzk5NjM2LCJqdGkiOiI0N2VjYjJjNy1iY2M1LTQ1NzItOGY5OC1jOTZjNjJhZTFmZTIiLCJuYmYiOjE3MzU3OTc4MzZ9.WSG0wvDFiWXygNCAV5y9Bjx3JqrPNuFKIOBnjxF7Igg
+
+{
+  "departmentId": 1
+}
+
+### Get a survey by id
+GET http://localhost:8080/api/v1/surveys/e31626ab-9588-441a-b2a6-159af5d2b99b
+
+### Get all questions from survey
+GET http://localhost:8080/api/v1/surveys/8d46917d-647a-4090-9e9c-fa07a000d5a4/questions
+
+### Post a question to a survey
+POST http://localhost:8080/api/v1/surveys/4c9a6e08-46db-4634-a360-0966cfb1a995/questions
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBVVRIMEpXVC1CQUNLRU5EIiwic3ViIjoiYWRtaW4iLCJhdXRob3JpdGllcyI6IkNSRUFURSxERUxFVEUsUkVBRCxST0xFX0FETUlOLFVQREFURSIsImlhdCI6MTczNTc5NzgzNiwiZXhwIjoxNzM1Nzk5NjM2LCJqdGkiOiI0N2VjYjJjNy1iY2M1LTQ1NzItOGY5OC1jOTZjNjJhZTFmZTIiLCJuYmYiOjE3MzU3OTc4MzZ9.WSG0wvDFiWXygNCAV5y9Bjx3JqrPNuFKIOBnjxF7Igg
+
+{
+  "statement": "What is your name?"
+}
+
+### Get a question by id
+GET http://localhost:8080/api/v1/surveys/e31626ab-9588-441a-b2a6-159af5d2b99b/questions
+
+### Get all answers from a question
+GET http://localhost:8080/api/v1/surveys/8d46917d-647a-4090-9e9c-fa07a000d5a4/questions/1/answers
+
+### Post an answer to a question
+POST http://localhost:8080/api/v1/surveys/4c9a6e08-46db-4634-a360-0966cfb1a995/questions/1/answers
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBVVRIMEpXVC1CQUNLRU5EIiwic3ViIjoiYWRtaW4iLCJhdXRob3JpdGllcyI6IkNSRUFURSxERUxFVEUsUkVBRCxST0xFX0FETUlOLFVQREFURSIsImlhdCI6MTczNTc5NzgzNiwiZXhwIjoxNzM1Nzk5NjM2LCJqdGkiOiI0N2VjYjJjNy1iY2M1LTQ1NzItOGY5OC1jOTZjNjJhZTFmZTIiLCJuYmYiOjE3MzU3OTc4MzZ9.WSG0wvDFiWXygNCAV5y9Bjx3JqrPNuFKIOBnjxF7Igg
+
+{
+  "statement": "Joseph Smith",
+  "value": 3
+}
+
+### Get an answer by id
+GET http://localhost:8080/api/v1/surveys/2afce032-b80b-4c5a-b3b2-9cfb986f963f/questions/1/answers/1
+
+### Get responses
+GET http://localhost:8080/api/v1/responses
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBVVRIMEpXVC1CQUNLRU5EIiwic3ViIjoiYWRtaW4iLCJhdXRob3JpdGllcyI6IkNSRUFURSxERUxFVEUsUkVBRCxST0xFX0FETUlOLFVQREFURSIsImlhdCI6MTczNTY3NjgxMCwiZXhwIjoxNzM1Njc4NjEwLCJqdGkiOiJhYWU0MGNkMS1jMmZmLTRmMDgtODFkZS1hMzEwNDkzYmUzNzkiLCJuYmYiOjE3MzU2NzY4MTB9.G8wg3DSi2ut1SF9YQQDERSgX1KuW7Jjn0eJv6Rv_j-Q
+
+### Post an response
+POST http://localhost:8080/api/v1/responses
+Content-Type: application/json
+
+{
+  "respondent": {
+    "firstname": "Martina",
+    "lastname": "Smith",
+    "documentType": "CC",
+    "documentNumber": "123456789",
+    "email": "martina@smith.com",
+    "phone": "1234567890",
+    "student": true
+  },
+  "answerId": 1,
+  "questionId": 1,
+  "surveyId": "b4f629e7-2d4d-4b61-a2e4-e0c7e0e0ecfe"
+}
