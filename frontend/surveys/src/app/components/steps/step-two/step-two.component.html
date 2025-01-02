@@ -1,11 +1,12 @@
 @for (survey of surveys(); track $index) {
-<p class="text-lg font-semibold">
-  {{ survey.departmentEntity?.name }}
-</p>
-<button (click)="handleSelectSurvey(survey.id)">choose</button>
-}
 
-<div class="">
-  <button (click)="handlePreviousStep()">Atrás</button>
-  <button (click)="handleNextStep()">Siguiente</button>
-</div>
+  <div class="flex items-stretch w-full">
+    <input type="radio" id="{{ survey.id }}" name="survey" value="{{ survey.id }}" (change)="handleSelectSurvey(survey.id)" />
+    <label for="{{ survey.id }}" class="ml-2">{{ survey.departmentEntity?.name }}</label>
+  </div>
+
+  <!-- <p class="text-lg font-semibold">
+    {{ survey.departmentEntity?.name }}
+    </p>
+  <button (click)="handleSelectSurvey(survey.id)">choose</button> -->
+}

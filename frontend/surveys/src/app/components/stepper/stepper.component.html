@@ -1,7 +1,21 @@
-@switch (stepperService.currentStep) { @case (0) {
-<app-step-one></app-step-one>
-} @case (1) {
-<app-step-two [surveys]="dataService.surveys"></app-step-two>
-} @case (2) {
-<app-step-three [surveyId]="stepperService.response.surveyId"></app-step-three>
+<main class="flex flex-col w-full gap-8">
+  @switch (stepperService.currentStep) { @case (0) {
+    <app-step-one></app-step-one>
+    <button class="block px-3 py-2 text-center text-white bg-black rounded-md " (click)="handleNextStep()">Siguiente</button>
+
+  } @case (1) {
+  <app-step-two [surveys]="dataService.surveys"></app-step-two>
+  <div class="flex justify-between gap-3 mx-3">
+    <button class="block px-3 py-2 font-semibold text-center border rounded-md" (click)="handlePreviousStep()">Atrás</button>
+    <button class="block px-3 py-2 text-center text-white bg-black rounded-md" (click)="handleNextStep()">Siguiente</button>
+  </div>
+  } @case (2) {
+  <app-step-three [surveyId]="stepperService.response.surveyId"></app-step-three>
+  <div class="flex justify-between gap-3 mx-3">
+    <button class="block px-3 py-2 font-semibold text-center border rounded-md" (click)="handlePreviousStep()">Atrás</button>
+    <button class="block px-3 py-2 text-center text-white bg-black rounded-md" (click)="handleSubmitResponse()">Enviar</button>
+  </div>
 } }
+
+</main>
+

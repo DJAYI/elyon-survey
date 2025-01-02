@@ -38,7 +38,6 @@ export class StepperComponent implements OnInit {
     this.dataService.getSurveys().subscribe({
       next: (data) => {
         this.dataService.surveys = data;
-        console.log(this.dataService.surveys);
       },
 
       error: (e) => {
