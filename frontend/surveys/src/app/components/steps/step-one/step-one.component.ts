@@ -86,9 +86,6 @@ export class StepOneComponent{
 
     Object.assign(this.stepperService.respondent, this.respondentForm.value);
 
-    
-    console.log(this.stepperService.respondent);
-
     this.stepperService.handleNextStep();
   }
 }

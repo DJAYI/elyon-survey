@@ -1,4 +1,10 @@
+<p class="mt-2 mb-10 text-xl font-semibold text-center">Responde las preguntas de satisfacción</p>
+
 <main class="flex flex-col items-center justify-center h-full my-4 space-y-5">
+  @if (dataService.questions.length === 0 || dataService.questions === undefined) {
+    <div class="loader"></div> 
+  }
+
   @for (question of dataService.questions; track $index) {
     <div class="w-full p-5 bg-white rounded-lg shadow-md">
       <p class="text-xl font-bold">{{ question.statement }}</p>
