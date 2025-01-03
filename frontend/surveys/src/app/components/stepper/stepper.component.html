@@ -1,19 +1,18 @@
-<main class="flex flex-col w-full gap-8">
+<main class="flex flex-col gap-4 mx-5">
   @switch (stepperService.currentStep) { @case (0) {
     <app-step-one></app-step-one>
-    <button class="block px-3 py-2 text-center text-white bg-black rounded-md " (click)="handleNextStep()">Siguiente</button>
 
   } @case (1) {
   <app-step-two [surveys]="dataService.surveys"></app-step-two>
   <div class="flex justify-between gap-3 mx-3">
-    <button class="block px-3 py-2 font-semibold text-center border rounded-md" (click)="handlePreviousStep()">Atrás</button>
-    <button class="block px-3 py-2 text-center text-white bg-black rounded-md" (click)="handleNextStep()">Siguiente</button>
+    <button class="w-full px-3 py-2 font-semibold text-center border rounded-md" (click)="handlePreviousStep()">Atrás</button>
+    <button class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm disabled:bg-gray-300 disabled:text-black hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm" [disabled]="stepperService.response.surveyId.length <=0" (click)="handleNextStep()">Siguiente</button>
   </div>
   } @case (2) {
   <app-step-three [surveyId]="stepperService.response.surveyId"></app-step-three>
   <div class="flex justify-between gap-3 mx-3">
-    <button class="block px-3 py-2 font-semibold text-center border rounded-md" (click)="handlePreviousStep()">Atrás</button>
-    <button class="block px-3 py-2 text-center text-white bg-black rounded-md" (click)="handleSubmitResponse()">Enviar</button>
+    <button class="w-full px-3 py-2 font-semibold text-center border rounded-md" (click)="handlePreviousStep()">Atrás</button>
+    <button class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm disabled:bg-gray-300 disabled:text-black hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm" [disabled]="stepperService.response.surveyResponse.size <= 0" (click)="handleSubmitResponse()">Enviar</button>
   </div>
 } }
 

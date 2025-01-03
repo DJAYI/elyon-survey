@@ -1,10 +1,15 @@
-@for (question of dataService.questions; track $index) {
-<p class="text-lg font-semibold">{{ question.statement }}</p>
-
-  @for (answer of question.answerEntities; track $index) {
-    <div class="flex items-stretch">
-      <input type="radio" id="{{ question.id }}" name="answer" value="{{ answer.value }}" (change)="handleChooseAnswer(answer.id ? answer.id : 0, question.id ? question.id : 0)" />
-      <label for="{{ answer.id }}" class="ml-2">{{ answer.statement }}</label>
+<main class="flex flex-col items-center justify-center h-full my-4 space-y-5">
+  @for (question of dataService.questions; track $index) {
+    <div class="w-full p-5 bg-white rounded-lg shadow-md">
+      <p class="text-xl font-bold">{{ question.statement }}</p>
+  
+      @for (answer of question.answerEntities; track $index) {
+        <div class="flex items-center self-start mx-5">
+          <input class="px-2 py-4 size-4" type="radio" id="{{ answer.id }}" name="{{ question.id }}" value="{{ answer.value }}" (change)="handleChooseAnswer(answer.id ? answer.id : 0, question.id ? question.id : 0)" />
+          <label for="{{ answer.id }}" class="px-3 py-2 ml-2 font-semibold">{{ answer.statement }}</label>
+        </div>
+      }
     </div>
-  }
-} 
+  } 
+
+</main>

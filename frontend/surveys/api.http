@@ -10,7 +10,7 @@ GET http://localhost:8080/api/v1/surveys
 ### Post a survey
 POST http://localhost:8080/api/v1/surveys
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBVVRIMEpXVC1CQUNLRU5EIiwic3ViIjoiYWRtaW4iLCJhdXRob3JpdGllcyI6IkNSRUFURSxERUxFVEUsUkVBRCxST0xFX0FETUlOLFVQREFURSIsImlhdCI6MTczNTc5NzgzNiwiZXhwIjoxNzM1Nzk5NjM2LCJqdGkiOiI0N2VjYjJjNy1iY2M1LTQ1NzItOGY5OC1jOTZjNjJhZTFmZTIiLCJuYmYiOjE3MzU3OTc4MzZ9.WSG0wvDFiWXygNCAV5y9Bjx3JqrPNuFKIOBnjxF7Igg
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBVVRIMEpXVC1CQUNLRU5EIiwic3ViIjoiYWRtaW4iLCJhdXRob3JpdGllcyI6IkNSRUFURSxERUxFVEUsUkVBRCxST0xFX0FETUlOLFVQREFURSIsImlhdCI6MTczNTg1ODkwMSwiZXhwIjoxNzM1ODYwNzAxLCJqdGkiOiJhZjc5ODg0ZS1jYWI3LTQxMGMtOGQxZC0yOGZhZWY0NTQ0Y2MiLCJuYmYiOjE3MzU4NTg5MDF9.QClufU7LeJYlzJdxBUlEA2MW9HM8P0xw0UG2MhmNd_I
 
 {
   "departmentId": 1
@@ -20,15 +20,15 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBVVRIMEpXV
 GET http://localhost:8080/api/v1/surveys/e31626ab-9588-441a-b2a6-159af5d2b99b
 
 ### Get all questions from survey
-GET http://localhost:8080/api/v1/surveys/8d46917d-647a-4090-9e9c-fa07a000d5a4/questions
+GET http://localhost:8080/api/v1/surveys/4c9a6e08-46db-4634-a360-0966cfb1a995/questions
 
 ### Post a question to a survey
-POST http://localhost:8080/api/v1/surveys/4c9a6e08-46db-4634-a360-0966cfb1a995/questions
+POST http://localhost:8080/api/v1/surveys/9ef97102-4a3e-48e4-9d0c-6bdd258afc2e/questions
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBVVRIMEpXVC1CQUNLRU5EIiwic3ViIjoiYWRtaW4iLCJhdXRob3JpdGllcyI6IkNSRUFURSxERUxFVEUsUkVBRCxST0xFX0FETUlOLFVQREFURSIsImlhdCI6MTczNTc5NzgzNiwiZXhwIjoxNzM1Nzk5NjM2LCJqdGkiOiI0N2VjYjJjNy1iY2M1LTQ1NzItOGY5OC1jOTZjNjJhZTFmZTIiLCJuYmYiOjE3MzU3OTc4MzZ9.WSG0wvDFiWXygNCAV5y9Bjx3JqrPNuFKIOBnjxF7Igg
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBVVRIMEpXVC1CQUNLRU5EIiwic3ViIjoiYWRtaW4iLCJhdXRob3JpdGllcyI6IkNSRUFURSxERUxFVEUsUkVBRCxST0xFX0FETUlOLFVQREFURSIsImlhdCI6MTczNTg1ODkwMSwiZXhwIjoxNzM1ODYwNzAxLCJqdGkiOiJhZjc5ODg0ZS1jYWI3LTQxMGMtOGQxZC0yOGZhZWY0NTQ0Y2MiLCJuYmYiOjE3MzU4NTg5MDF9.QClufU7LeJYlzJdxBUlEA2MW9HM8P0xw0UG2MhmNd_I
 
 {
-  "statement": "What is your name?"
+  "statement": "What is your favorite movie?"
 }
 
 ### Get a question by id
@@ -38,12 +38,12 @@ GET http://localhost:8080/api/v1/surveys/e31626ab-9588-441a-b2a6-159af5d2b99b/qu
 GET http://localhost:8080/api/v1/surveys/8d46917d-647a-4090-9e9c-fa07a000d5a4/questions/1/answers
 
 ### Post an answer to a question
-POST http://localhost:8080/api/v1/surveys/4c9a6e08-46db-4634-a360-0966cfb1a995/questions/1/answers
+POST http://localhost:8080/api/v1/surveys/9ef97102-4a3e-48e4-9d0c-6bdd258afc2e/questions/1/answers
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBVVRIMEpXVC1CQUNLRU5EIiwic3ViIjoiYWRtaW4iLCJhdXRob3JpdGllcyI6IkNSRUFURSxERUxFVEUsUkVBRCxST0xFX0FETUlOLFVQREFURSIsImlhdCI6MTczNTc5NzgzNiwiZXhwIjoxNzM1Nzk5NjM2LCJqdGkiOiI0N2VjYjJjNy1iY2M1LTQ1NzItOGY5OC1jOTZjNjJhZTFmZTIiLCJuYmYiOjE3MzU3OTc4MzZ9.WSG0wvDFiWXygNCAV5y9Bjx3JqrPNuFKIOBnjxF7Igg
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBVVRIMEpXVC1CQUNLRU5EIiwic3ViIjoiYWRtaW4iLCJhdXRob3JpdGllcyI6IkNSRUFURSxERUxFVEUsUkVBRCxST0xFX0FETUlOLFVQREFURSIsImlhdCI6MTczNTg1ODY5NywiZXhwIjoxNzM1ODYwNDk3LCJqdGkiOiJhODM5NTk5Ny1hMDlkLTQ2MTMtODBiOC03YjliZjNlMjNlOTkiLCJuYmYiOjE3MzU4NTg2OTd9.-qHdmACgzDuzPv6ub2CISgbzRJPKDHr5e2xadgMf1W4
 
 {
-  "statement": "Joseph Smith",
+  "statement": "Birds",
   "value": 3
 }
 
