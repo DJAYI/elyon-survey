@@ -1,10 +1,10 @@
-<p class="my-6 text-xl font-semibold text-center">Brindanos tus Datos personales</p>
+<p class="mt-2 mb-10 text-xl font-semibold text-center">Brindanos tus Datos personales</p>
 
 <form [formGroup]="respondentForm" class="my-4">
   <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
     <div class="col-span-2">
-      <label for="firstname" class="block text-sm font-medium text-gray-700">Nombre</label>
-      <input type="text" id="firstname" formControlName="firstname" class="block w-full px-1 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      <label for="firstname" class="block mb-2 text-sm font-medium text-gray-900">Nombre</label>
+      <input type="text" id="firstname" formControlName="firstname" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 p-2.5 outline-none">
 
       @if (firstname.hasError("required") && (firstname.dirty || firstname.touched)) {
         <p class="text-xs italic text-red-500">Este campo es requerido</p>
@@ -21,8 +21,8 @@
     </div>
 
     <div class="col-span-2">
-      <label for="lastname" class="block text-sm font-medium text-gray-700">Apellido</label>
-      <input type="text" id="lastname" formControlName="lastname" class="block w-full px-1 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      <label for="lastname" class="block mb-2 text-sm font-medium text-gray-900">Apellido</label>
+      <input type="text" id="lastname" formControlName="lastname" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 p-2.5 outline-none">
 
       @if (lastname.hasError("required") && (lastname.dirty || lastname.touched)) {
         <p class="text-xs italic text-red-500">Este campo es requerido</p>
@@ -38,8 +38,8 @@
     </div>
 
     <div class="col-span-2">
-      <label for="documentType" class="block text-sm font-medium text-gray-700">Tipo de documento</label>
-      <select id="documentType" formControlName="documentType" class="block w-full px-1 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      <label for="documentType" class="block mb-2 text-sm font-medium text-gray-900">Tipo de documento</label>
+      <select id="documentType" formControlName="documentType" class="bg-gray-50 border outline-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
         <option selected disabled value="">-- Selecciona una opción --</option>
         <option value="CC">Cedula de Ciudadanía</option>
         <option value="TI">Tarjeta de Identidad</option>
@@ -53,8 +53,8 @@
     </div>
 
     <div class="col-span-2">
-      <label for="documentNumber" class="block text-sm font-medium text-gray-700">Número de documento</label>
-      <input type="text" id="documentNumber" formControlName="documentNumber" class="block w-full px-1 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      <label for="documentNumber" class="block mb-2 text-sm font-medium text-gray-900">Número de documento</label>
+      <input type="text" id="documentNumber" formControlName="documentNumber" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 p-2.5 outline-none">
 
       @if (documentNumber.hasError("required") && (documentNumber.dirty || documentNumber.touched)) {
         <p class="text-xs italic text-red-500">Este campo es requerido</p>
@@ -74,8 +74,8 @@
     </div>
 
     <div class="col-span-2">
-      <label for="email" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
-      <input type="email" id="email" formControlName="email" class="block w-full px-1 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Correo electrónico</label>
+      <input type="email" id="email" formControlName="email" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 p-2.5 outline-none">
 
       @if (email.hasError("required") && (email.dirty || email.touched)) {
         <p class="text-xs italic text-red-500">Este campo es requerido</p>
@@ -87,8 +87,8 @@
     </div>
 
     <div class="col-span-2">
-      <label for="phone" class="block text-sm font-medium text-gray-700">Teléfono</label>
-      <input type="text" id="phone" formControlName="phone" class="block w-full px-1 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">Teléfono</label>
+      <input type="text" id="phone" formControlName="phone" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 p-2.5 outline-none">
 
       @if (phone.hasError("required") && (phone.dirty || phone.touched)) {
         <p class="text-xs italic text-red-500">Este campo es requerido</p>
@@ -109,15 +109,18 @@
       
     </div>
 
-    <div class="col-span-2">
-      <div class="flex items-center">
-        <input id="student" formControlName="student" type="checkbox" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-        <label for="student" class="block ml-2 text-sm text-gray-900">Soy estudiante</label>
+    <div class="flex col-span-2 mx-1 mb-4">
+        <div class="flex items-center h-5">
+          <input id="student" formControlName="student" type="checkbox" class="text-blue-600 bg-gray-100 border-gray-300 rounded size-4 focus:ring-blue-500 focus:ring-2">
+        </div>
+        <div class="text-sm ms-2">
+          <label for="student" class="font-medium text-gray-900">Soy estudiante</label>
+          <p id="student" class="text-xs font-normal text-gray-500 text-pretty">Para estudiantes de la institución, nos interesa mucho tu opinión</p>
       </div>
     </div>
 
     <div class="col-span-2">
-      <button type="button" [disabled]="respondentForm.invalid" (click)="handleNextStep()" class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm disabled:bg-gray-300 disabled:text-black hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
+      <button type="button" [disabled]="respondentForm.invalid" (click)="handleNextStep()" class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 disabled:opacity-55 w-full  disabled:text-black">
         Siguiente
       </button>
     </div>

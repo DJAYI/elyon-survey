@@ -6,13 +6,13 @@
   <app-step-two [surveys]="dataService.surveys"></app-step-two>
   <div class="flex justify-between gap-3 mx-3">
     <button class="w-full px-3 py-2 font-semibold text-center border rounded-md" (click)="handlePreviousStep()">Atrás</button>
-    <button class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm disabled:bg-gray-300 disabled:text-black hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm" [disabled]="stepperService.response.surveyId.length <=0" (click)="handleNextStep()">Siguiente</button>
+    <button class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 disabled:opacity-55 w-full  disabled:text-black" [disabled]="stepperService.response.surveyId.length <=0" (click)="handleNextStep()">Siguiente</button>
   </div>
   } @case (2) {
   <app-step-three [surveyId]="stepperService.response.surveyId"></app-step-three>
   <div class="flex justify-between gap-3 mx-3">
     <button class="w-full px-3 py-2 font-semibold text-center border rounded-md" (click)="handlePreviousStep()">Atrás</button>
-    <button class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm disabled:bg-gray-300 disabled:text-black hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm" [disabled]="stepperService.response.surveyResponse.size <= 0" (click)="handleSubmitResponse()">Enviar</button>
+    <button class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 disabled:opacity-55 w-full  disabled:text-black" [disabled]="stepperService.response.surveyResponse.size <= 0" (click)="handleSubmitResponse()">Enviar</button>
   </div>
 } }
 
