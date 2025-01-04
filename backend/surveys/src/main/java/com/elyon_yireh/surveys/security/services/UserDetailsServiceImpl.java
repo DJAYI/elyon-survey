@@ -6,6 +6,7 @@ import com.elyon_yireh.surveys.security.entities.UserEntity;
 import com.elyon_yireh.surveys.security.repository.UserRepository;
 import com.elyon_yireh.surveys.security.utils.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -56,11 +57,26 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         String username = authLoginRequest.username();
         String password = authLoginRequest.password();
 
-        Authentication authentication = this.authenticate(username, password);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        try {
+            Authentication authentication = this.authenticate(username, password);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        String accessToken = jwtUtils.createToken(authentication);
-        return new AuthResponse(username, "User loged succesfully", accessToken, true);
+            String accessToken = jwtUtils.createToken(authentication);
+
+            // Set cookie
+            ResponseCookie cookie = ResponseCookie.from("access_token", accessToken)
+                    .httpOnly(true)
+                    .path("/")
+                    .secure(false)
+                    .maxAge(3600)
+                    .build();
+
+            // Add cookie to response
+
+            return new AuthResponse(username, "User logged successfully", cookie.toString());
+        } catch (Error e) {
+            return new AuthResponse(username, "User couldn't login unsuccessfully", null);
+        }
     }
 
     public Authentication authenticate(String username, String password) {
