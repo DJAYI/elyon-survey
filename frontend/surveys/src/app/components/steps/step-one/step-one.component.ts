@@ -5,11 +5,10 @@ import { Respondent } from '../../../model/response';
 import { StepperService } from '../../../services/stepper/stepper.service';
 
 @Component({
-  selector: 'app-step-one',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgClass],
-  templateUrl: './step-one.component.html',
-  styleUrl: './step-one.component.css',
+    selector: 'app-step-one',
+    imports: [ReactiveFormsModule, NgClass],
+    templateUrl: './step-one.component.html',
+    styleUrl: './step-one.component.css'
 })
 export class StepOneComponent{
   respondentForm: FormGroup;

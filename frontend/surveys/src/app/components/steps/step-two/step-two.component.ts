@@ -4,11 +4,10 @@ import { DataService } from '../../../services/data/data.service';
 import { StepperService } from '../../../services/stepper/stepper.service';
 
 @Component({
-  selector: 'app-step-two',
-  standalone: true,
-  imports: [],
-  templateUrl: './step-two.component.html',
-  styleUrl: './step-two.component.css',
+    selector: 'app-step-two',
+    imports: [],
+    templateUrl: './step-two.component.html',
+    styleUrl: './step-two.component.css'
 })
 export class StepTwoComponent {
   surveys = input([] as Survey[]);

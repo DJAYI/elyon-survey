@@ -4,11 +4,10 @@ import { DataService } from '../../../services/data/data.service';
 import { StepperService } from '../../../services/stepper/stepper.service';
 
 @Component({
-  selector: 'app-step-three',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './step-three.component.html',
-  styleUrl: './step-three.component.css',
+    selector: 'app-step-three',
+    imports: [ReactiveFormsModule],
+    templateUrl: './step-three.component.html',
+    styleUrl: './step-three.component.css'
 })
 export class StepThreeComponent implements OnInit {
   surveyId = input('');

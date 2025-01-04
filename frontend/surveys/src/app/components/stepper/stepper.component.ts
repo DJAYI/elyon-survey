@@ -6,11 +6,10 @@ import { StepThreeComponent } from '../steps/step-three/step-three.component';
 import { StepTwoComponent } from '../steps/step-two/step-two.component';
 
 @Component({
-  selector: 'app-stepper',
-  standalone: true,
-  imports: [StepOneComponent, StepTwoComponent, StepThreeComponent],
-  templateUrl: './stepper.component.html',
-  styleUrl: './stepper.component.css',
+    selector: 'app-stepper',
+    imports: [StepOneComponent, StepTwoComponent, StepThreeComponent],
+    templateUrl: './stepper.component.html',
+    styleUrl: './stepper.component.css'
 })
 export class StepperComponent implements OnInit {
   constructor(
