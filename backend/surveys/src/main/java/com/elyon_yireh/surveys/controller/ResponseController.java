@@ -1,16 +1,14 @@
 package com.elyon_yireh.surveys.controller;
 
-import com.elyon_yireh.surveys.model.entities.ResponseEntity;
-import com.elyon_yireh.surveys.model.schemas.create.CreateRespondent;
+import com.elyon_yireh.surveys.model.entities.ResponseSurveyEntity;
 import com.elyon_yireh.surveys.model.schemas.create.CreateResponse;
-import com.elyon_yireh.surveys.services.ResponseService;
+import com.elyon_yireh.surveys.services.ResponseSurveyService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/responses")
@@ -18,17 +16,18 @@ import java.util.UUID;
 public class ResponseController {
 
     @Autowired
-    private ResponseService responseService;
+    private ResponseSurveyService responseSurveyService;
 
     @GetMapping
     @PreAuthorize("hasAuthority('READ')")
-    public List<ResponseEntity> getAll() {
-        return responseService.getAll();
+    public List<ResponseSurveyEntity> getAll() {
+        return responseSurveyService.getAll();
     }
 
     @PostMapping
     @PreAuthorize("permitAll()")
-    public ResponseEntity createResponse(@Valid @RequestBody CreateResponse response) throws Exception {
-        return responseService.createResponse(response);
+    public List<ResponseSurveyEntity> createResponse(@Valid @RequestBody CreateResponse response) throws Exception {
+        System.out.println(response.toString());
+        return responseSurveyService.createSurveyResponse(response);
     }
 }

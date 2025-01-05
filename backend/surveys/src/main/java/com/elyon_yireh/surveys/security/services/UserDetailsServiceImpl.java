@@ -68,7 +68,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                     .httpOnly(true)
                     .path("/")
                     .secure(false)
-                    .maxAge(3600)
+                    .maxAge(60 * 60 * 2)
                     .build();
 
             // Add cookie to response

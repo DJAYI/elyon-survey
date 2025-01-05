@@ -40,7 +40,7 @@ public class SecurityController {
     @PreAuthorize("permitAll()")
     public ResponseEntity<AuthResponse> login(@RequestBody @Valid AuthLoginRequest userRequest, HttpServletResponse response){
         return ResponseEntity.ok()
-                .header(HttpHeaders.SET_COOKIE, this.userDetailsService.loginUser(userRequest).cookie())
+                .header(HttpHeaders.SET_COOKIE, this.userDetailsService.loginUser(userRequest).token())
                 .body(this.userDetailsService.loginUser(userRequest));
     }
 
