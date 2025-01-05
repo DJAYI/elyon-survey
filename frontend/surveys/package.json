@@ -24,6 +24,7 @@
     "@angular/ssr": "^19.0.6",
     "express": "^4.18.2",
     "ngx-cookie": "^6.0.1",
+    "ngx-cookie-service-ssr": "^19.0.0",
     "rxjs": "~7.8.0",
     "surveys": "file:",
     "tslib": "^2.3.0",

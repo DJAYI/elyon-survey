@@ -7,7 +7,9 @@ import { SurveysComponent } from './admin/surveys/surveys.component';
 import { UsersComponent } from './admin/users/users.component';
 import { StepperComponent } from './components/stepper/stepper.component';
 import { SurveyItemComponent } from './components/survey-item/survey-item.component';
+import { adminGuard } from './guards/admin/admin.guard';
 import { authGuard } from './guards/auth/auth.guard';
+import { loginGuard } from './guards/auth/login/login.guard';
 import { roleGuard } from './guards/role/role.guard';
 
 export const routes: Routes = [
@@ -18,7 +20,7 @@ export const routes: Routes = [
   {
     path: 'auth',
     component: AuthComponent,
-    canActivate: [authGuard],
+    canActivateChild: [loginGuard],
     children: [
       {
         path: 'login',
@@ -30,6 +32,7 @@ export const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     canActivate: [authGuard],
+    canActivateChild: [adminGuard],
     children: [
       {
         path: 'users',
