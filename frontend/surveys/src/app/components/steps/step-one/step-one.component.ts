@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Respondent } from '../../../model/response';
@@ -6,7 +5,7 @@ import { StepperService } from '../../../services/stepper/stepper.service';
 
 @Component({
     selector: 'app-step-one',
-    imports: [ReactiveFormsModule, NgClass],
+    imports: [ReactiveFormsModule],
     templateUrl: './step-one.component.html',
     styleUrl: './step-one.component.css'
 })

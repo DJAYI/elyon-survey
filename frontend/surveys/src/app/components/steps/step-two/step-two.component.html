@@ -1,6 +1,6 @@
 <p class="mt-2 mb-10 text-xl font-semibold text-center">Selecciona el área que deseas evaluar</p>
 
-@if (surveys.length === 0 || surveys === undefined ) {
+@if (surveys().length === 0 || surveys() === undefined ) {
   <div class="mx-auto mb-16 loader"></div>
 } 
 

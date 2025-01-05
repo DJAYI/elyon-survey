@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Respondent, Response } from '../../model/response';
+import { Respondent, Response, ResponseSurvey } from '../../model/response';
+import { DataService } from '../data/data.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StepperService {
   respondent: Respondent;
-  response: Response;
-
-  submittedResponse: Response[];
+  response: Map<number, number>;
+  responseSurvey: ResponseSurvey;
 
   currentStep: number;
 
-  constructor() {
-    this.currentStep = 0;
+  constructor(public dataService: DataService) {
+    this.currentStep = 2;
+
     this.respondent = {
       firstname: '',
       lastname: '',
@@ -22,22 +23,33 @@ export class StepperService {
       email: '',
       phone: '',
       student: false,
-    };
-    this.response = {
-      respondent: this.respondent,
-      surveyResponse: new Set(),
-      surveyId: '',
-    };
+    }
 
-    this.submittedResponse = [];
+    this.response = new Map();
+
+    this.responseSurvey = {
+      surveyId: '',
+      responses: [],
+      respondent: this.respondent,
+    }
+
   }
 
   setRespondent(respondent: Respondent) {
     this.respondent = respondent;
   }
 
-  setResponse(response: Response) {
-    this.response = response;
+  addResponse(response: Response) {
+    this.response.set(response.questionId!, response.answerId!);
+
+    this.responseSurvey.responses = Array.from(this.response).map(([questionId, answerId]) => {
+      return {
+        questionId: questionId,
+        answerId: answerId,
+      }
+    });
+
+    console.log(this.responseSurvey.responses);
   }
 
   handleNextStep() {
@@ -49,6 +61,14 @@ export class StepperService {
   }
 
   handleSubmitResponse() {
-    console.log(this.response);
+    console.log(this.responseSurvey);
+    this.dataService.postSurveyResponse(this.responseSurvey).subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      error: () => {
+        console.log('Something went wrong');
+      },
+    });
   }
 }

@@ -1,36 +1,41 @@
 import { Component, input, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Response } from '../../../model/response';
+import { QuestionEntity } from '../../../model/survey';
 import { DataService } from '../../../services/data/data.service';
 import { StepperService } from '../../../services/stepper/stepper.service';
 
 @Component({
-    selector: 'app-step-three',
-    imports: [ReactiveFormsModule],
-    templateUrl: './step-three.component.html',
-    styleUrl: './step-three.component.css'
+  selector: 'app-step-three',
+  imports: [ReactiveFormsModule],
+  templateUrl: './step-three.component.html',
+  styleUrl: './step-three.component.css'
 })
 export class StepThreeComponent implements OnInit {
   surveyId = input('');
+  response: Response;
+
+  questions?: QuestionEntity[];
 
   constructor(
     public dataService: DataService,
     public stepperService: StepperService
-  ) {}
+  ) {
+    this.response = {
+      questionId: 0,
+      answerId: 0,
+    }
 
-  ngOnInit(): void {
-    this.getSurveyQuestions(this.surveyId());
+    this.questions = [];
   }
 
-  getSurveyQuestions(surveyId: string) {
-    this.dataService.getSurveyQuestions(surveyId).subscribe({
-      next: (data) => {
-        this.dataService.questions = data;
-      },
-    });
+  ngOnInit(): void {
+    this.questions = this.dataService.getSurveyQuestions(this.surveyId())
   }
 
   handleSubmit() {
     this.stepperService.handleSubmitResponse();
+    console.log(this.stepperService.response);
   }
 
   handlePreviousStep() {
@@ -38,26 +43,10 @@ export class StepThreeComponent implements OnInit {
   }
 
   handleChooseAnswer(answerId: number, questionId: number) {
-    // Check if the quuestion is already answered
-    const surveyResponse = this.stepperService.response.surveyResponse;
+    this.response.answerId = answerId;
+    this.response.questionId = questionId;
 
-    let isAnswered = false;
-    surveyResponse.forEach((response) => {
-      if (response.questionId === questionId) {
-        isAnswered = true;
-      }
-    });
 
-    if (isAnswered) {
-      // Update the answer
-      surveyResponse.forEach((response) => {
-        if (response.questionId === questionId) {
-          response.answerId = answerId;
-        }
-      });
-    } else {
-      // Add the answer
-      surveyResponse.add({ questionId, answerId });
-    }
+    this.stepperService.addResponse(this.response);
   }
 }

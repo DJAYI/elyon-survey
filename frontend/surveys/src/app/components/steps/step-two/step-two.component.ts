@@ -4,10 +4,10 @@ import { DataService } from '../../../services/data/data.service';
 import { StepperService } from '../../../services/stepper/stepper.service';
 
 @Component({
-    selector: 'app-step-two',
-    imports: [],
-    templateUrl: './step-two.component.html',
-    styleUrl: './step-two.component.css'
+  selector: 'app-step-two',
+  imports: [],
+  templateUrl: './step-two.component.html',
+  styleUrl: './step-two.component.css'
 })
 export class StepTwoComponent {
   surveys = input([] as Survey[]);
@@ -15,7 +15,7 @@ export class StepTwoComponent {
   constructor(
     public stepperService: StepperService,
     public dataService: DataService
-  ) {}
+  ) { }
 
   handleNextStep() {
     this.stepperService.handleNextStep();
@@ -26,6 +26,6 @@ export class StepTwoComponent {
   }
 
   handleSelectSurvey(surveyId?: string) {
-    this.stepperService.response.surveyId = surveyId ? surveyId : '';
+    this.stepperService.responseSurvey.surveyId = surveyId ? surveyId : '';
   }
 }

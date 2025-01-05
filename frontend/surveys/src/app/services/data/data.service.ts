@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ResponseSurvey } from '../../model/response';
 import { QuestionEntity, Survey } from '../../model/survey';
 
 @Injectable({
@@ -12,21 +13,80 @@ export class DataService {
 
   constructor(private http: HttpClient) {
     this.surveys = [];
-    this.questions = [];
+    this.questions = [
+      {
+        id: 1,
+        statement: '¿Cuál es tu color favorito?',
+        answerEntities: [
+          {
+            id: 1,
+            statement: 'Rojo',
+            value: 1,
+          },
+          {
+            id: 2,
+            statement: 'Azul',
+            value: 2,
+          },
+          {
+            id: 3,
+            statement: 'Verde',
+            value: 3,
+          },
+        ]
+      },
+      {
+        id: 2,
+        statement: '¿Cuál es tu animal favorito?',
+        answerEntities: [
+          {
+            id: 4,
+            statement: 'Perro',
+            value: 1,
+          },
+          {
+            id: 5,
+            statement: 'Gato',
+            value: 2,
+          },
+          {
+            id: 6,
+            statement: 'Iguana',
+            value: 3,
+          },
+        ]
+      }
+    ];
   }
 
-  getSurveys() {
+  public getSurveys() {
     return this.http.get<Survey[]>(`${this.host}/surveys`, {
-      responseType: 'json',
+      responseType: 'json'
     });
   }
 
-  getSurveyQuestions(surveyId: string) {
-    return this.http.get<QuestionEntity[]>(
+  public getSurveyQuestions(surveyId: string): QuestionEntity[] {
+    this.http.get<QuestionEntity[]>(
       `${this.host}/surveys/${surveyId}/questions`,
       {
-        responseType: 'json',
+        responseType: 'json'
       }
-    );
+    ).subscribe({
+      next: (data) => {
+        this.questions = data;
+      },
+      error: (e) => {
+        console.log("Algo salió mal");
+      }
+    });
+
+
+    return this.questions;
+  }
+
+  public postSurveyResponse(response: ResponseSurvey) {
+    return this.http.post(`${this.host}/responses`, response, {
+      responseType: 'json',
+    });
   }
 }

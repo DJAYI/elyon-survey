@@ -1,7 +1,7 @@
 export interface AuthResponse {
   usernmae: string;
   message: string;
-  cookie: string;
+  token: string;
 }
 
 export interface LoginUser {

@@ -1,20 +1,20 @@
-export interface Response {
-  respondent: Respondent;
-  surveyResponse: Set<SurveyResponse>;
-  surveyId: string;
+export interface ResponseSurvey {
+  surveyId?: string;
+  responses?: Response[];
+  respondent?: Respondent;
 }
 
 export interface Respondent {
-  firstname: string;
-  lastname: string;
-  documentType: string;
-  documentNumber: string;
-  email: string;
-  phone: string;
-  student: boolean;
+  firstname?: string;
+  lastname?: string;
+  documentType?: string;
+  documentNumber?: string;
+  email?: string;
+  phone?: string;
+  student?: boolean;
 }
 
-export interface SurveyResponse {
-  questionId: number;
-  answerId: number;
+export interface Response {
+  questionId?: number;
+  answerId?: number;
 }
