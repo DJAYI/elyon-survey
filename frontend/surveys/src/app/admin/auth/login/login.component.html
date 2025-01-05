@@ -1,6 +1,6 @@
 
-<form [formGroup]="loginForm" class="w-full max-w-lg" (submit)="login()">
-  <div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
+<form [formGroup]="loginForm" class="mx-4" (submit)="login()">
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
     <div class="col-span-2">
       <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Nombre de Usuario</label>
       <input type="text" id="username" [formControl]="username" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 p-2.5 outline-none">

@@ -76,7 +76,7 @@ export class DataService {
         this.questions = data;
       },
       error: (e) => {
-        console.log("Algo salió mal");
+        console.log("Error: " + e);
       }
     });
 

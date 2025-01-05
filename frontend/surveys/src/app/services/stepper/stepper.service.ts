@@ -49,7 +49,6 @@ export class StepperService {
       }
     });
 
-    console.log(this.responseSurvey.responses);
   }
 
   handleNextStep() {
@@ -61,13 +60,12 @@ export class StepperService {
   }
 
   handleSubmitResponse() {
-    console.log(this.responseSurvey);
     this.dataService.postSurveyResponse(this.responseSurvey).subscribe({
       next: (data) => {
-        console.log(data);
+        console.log('Response sent');
       },
-      error: () => {
-        console.log('Something went wrong');
+      error: (e) => {
+        console.log("Error: " + e);
       },
     });
   }

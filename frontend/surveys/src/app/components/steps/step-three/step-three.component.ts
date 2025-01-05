@@ -35,7 +35,6 @@ export class StepThreeComponent implements OnInit {
 
   handleSubmit() {
     this.stepperService.handleSubmitResponse();
-    console.log(this.stepperService.response);
   }
 
   handlePreviousStep() {
