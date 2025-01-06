@@ -9,11 +9,10 @@ export class StepperService {
   respondent: Respondent;
   response: Map<number, number>;
   responseSurvey: ResponseSurvey;
-
   currentStep: number;
 
   constructor(public dataService: DataService) {
-    this.currentStep = 2;
+    this.currentStep = 0;
 
     this.respondent = {
       firstname: '',
@@ -60,13 +59,7 @@ export class StepperService {
   }
 
   handleSubmitResponse() {
-    this.dataService.postSurveyResponse(this.responseSurvey).subscribe({
-      next: (data) => {
-        console.log('Response sent');
-      },
-      error: (e) => {
-        console.log("Error: " + e);
-      },
-    });
+    this.dataService.postSurveyResponse(this.responseSurvey).subscribe();
+
   }
 }

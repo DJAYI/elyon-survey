@@ -16,7 +16,8 @@ export class StepperComponent {
   constructor(
     public stepperService: StepperService,
     public dataService: DataService
-  ) { }
+  ) {
+  }
 
   handleNextStep() {
     this.stepperService.handleNextStep();

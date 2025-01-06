@@ -55,6 +55,27 @@ export class DataService {
             value: 3,
           },
         ]
+      },
+      {
+        id: 3,
+        statement: '¿Cuál es tu instrumento favorito?',
+        answerEntities: [
+          {
+            id: 7,
+            statement: 'Guitarra',
+            value: 1,
+          },
+          {
+            id: 8,
+            statement: 'Flauta',
+            value: 2,
+          },
+          {
+            id: 9,
+            statement: 'Acordeon',
+            value: 3,
+          },
+        ]
       }
     ];
   }
