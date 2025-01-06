@@ -5,8 +5,8 @@
 } 
 
 @for (survey of surveys(); track $index) {
-  <div class="flex items-center self-start mx-5">
-    <input class="px-2 py-4 size-4" type="radio" id="{{ survey.id }}" name="survey" value="{{ survey.id }}" (change)="handleSelectSurvey(survey.id)" />
-    <label for="{{ survey.id }}" class="px-3 py-2 ml-2 font-semibold">{{ survey.departmentEntity?.name }}</label>
+  <div class="flex items-center w-full">
+      <input class="peer px-2 py-4 size-6 hidden" type="radio" id="{{ survey.id }}" name="{{ survey.departmentEntity?.name }}" value="{{ survey.id }}" (change)="handleSelectSurvey(survey.id)" />
+      <label for="{{ survey.id }}" class="peer-checked:bg-gradient-to-tr peer-checked:from-blue-400 peer-checked:to-cyan-400 peer-checked:text-white transition px-4 w-full text-start bg-slate-100 rounded-lg border text-xl py-3 ml-2 font-semibold">{{ survey.departmentEntity?.name }}</label>
   </div>
 }

@@ -12,71 +12,145 @@ export class DataService {
   questions: QuestionEntity[];
 
   constructor(private http: HttpClient) {
-    this.surveys = [];
+    this.surveys = [
+      // {
+      //   id: 'asfasdas-asfasdasda-asfsdasd-asfsdas',
+      //   departmentEntity: {
+      //     id: 1,
+      //     code: '01',
+      //     name: 'Amazonas',
+      //   },
+      //   questionEntities: [
+      //     {
+      //       id: 1,
+      //       statement: '¿Cuál es tu color favorito?',
+      //       answerEntities: [
+      //         {
+      //           id: 1,
+      //           statement: 'Rojo',
+      //           value: 1,
+      //         },
+      //         {
+      //           id: 2,
+      //           statement: 'Azul',
+      //           value: 2,
+      //         },
+      //         {
+      //           id: 3,
+      //           statement: 'Verde',
+      //           value: 3,
+      //         },
+      //       ]
+      //     },
+      //     {
+      //       id: 2,
+      //       statement: '¿Cuál es tu animal favorito?',
+      //       answerEntities: [
+      //         {
+      //           id: 4,
+      //           statement: 'Perro',
+      //           value: 1,
+      //         },
+      //         {
+      //           id: 5,
+      //           statement: 'Gato',
+      //           value: 2,
+      //         },
+      //         {
+      //           id: 6,
+      //           statement: 'Iguana',
+      //           value: 3,
+      //         },
+      //       ]
+      //     },
+      //     {
+      //       id: 3,
+      //       statement: '¿Cuál es tu instrumento favorito?',
+      //       answerEntities: [
+      //         {
+      //           id: 7,
+      //           statement: 'Guitarra',
+      //           value: 1,
+      //         },
+      //         {
+      //           id: 8,
+      //           statement: 'Flauta',
+      //           value: 2,
+      //         },
+      //         {
+      //           id: 9,
+      //           statement: 'Acordeon',
+      //           value: 3,
+      //         },
+      //       ]
+      //     }
+      //   ]
+      // }
+    ];
     this.questions = [
-      {
-        id: 1,
-        statement: '¿Cuál es tu color favorito?',
-        answerEntities: [
-          {
-            id: 1,
-            statement: 'Rojo',
-            value: 1,
-          },
-          {
-            id: 2,
-            statement: 'Azul',
-            value: 2,
-          },
-          {
-            id: 3,
-            statement: 'Verde',
-            value: 3,
-          },
-        ]
-      },
-      {
-        id: 2,
-        statement: '¿Cuál es tu animal favorito?',
-        answerEntities: [
-          {
-            id: 4,
-            statement: 'Perro',
-            value: 1,
-          },
-          {
-            id: 5,
-            statement: 'Gato',
-            value: 2,
-          },
-          {
-            id: 6,
-            statement: 'Iguana',
-            value: 3,
-          },
-        ]
-      },
-      {
-        id: 3,
-        statement: '¿Cuál es tu instrumento favorito?',
-        answerEntities: [
-          {
-            id: 7,
-            statement: 'Guitarra',
-            value: 1,
-          },
-          {
-            id: 8,
-            statement: 'Flauta',
-            value: 2,
-          },
-          {
-            id: 9,
-            statement: 'Acordeon',
-            value: 3,
-          },
-        ]
-      }
+      //   {
+      //     id: 1,
+      //     statement: '¿Cuál es tu color favorito?',
+      //     answerEntities: [
+      //       {
+      //         id: 1,
+      //         statement: 'Rojo',
+      //         value: 1,
+      //       },
+      //       {
+      //         id: 2,
+      //         statement: 'Azul',
+      //         value: 2,
+      //       },
+      //       {
+      //         id: 3,
+      //         statement: 'Verde',
+      //         value: 3,
+      //       },
+      //     ]
+      //   },
+      //   {
+      //     id: 2,
+      //     statement: '¿Cuál es tu animal favorito?',
+      //     answerEntities: [
+      //       {
+      //         id: 4,
+      //         statement: 'Perro',
+      //         value: 1,
+      //       },
+      //       {
+      //         id: 5,
+      //         statement: 'Gato',
+      //         value: 2,
+      //       },
+      //       {
+      //         id: 6,
+      //         statement: 'Iguana',
+      //         value: 3,
+      //       },
+      //     ]
+      //   },
+      //   {
+      //     id: 3,
+      //     statement: '¿Cuál es tu instrumento favorito?',
+      //     answerEntities: [
+      //       {
+      //         id: 7,
+      //         statement: 'Guitarra',
+      //         value: 1,
+      //       },
+      //       {
+      //         id: 8,
+      //         statement: 'Flauta',
+      //         value: 2,
+      //       },
+      //       {
+      //         id: 9,
+      //         statement: 'Acordeon',
+      //         value: 3,
+      //       },
+      //     ]
+      //   }
     ];
   }
 
