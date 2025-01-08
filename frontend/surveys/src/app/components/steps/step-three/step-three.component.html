@@ -1,18 +1,18 @@
 <p class="mt-2 mb-10 text-xl font-semibold text-center">Responde las preguntas de satisfacción</p>
 
-<main class="flex flex-col items-center gap-10 h-full my-4 space-y-5">
+<main class="flex flex-col items-center h-full gap-10 my-4 space-y-5">
   @if (questions?.length === 0) {
     <div class="loader"></div> 
   }
 
   @for (question of questions; track question.id) {
-    <div class="w-full p-5 bg-white gap-3 border flex flex-col text-center rounded-lg shadow-md shadow-blue-400/25">
-      <p class="text-xl mb-5 font-bold">{{ question.statement }}</p>
+    <div class="flex flex-col w-full gap-3 p-5 text-center bg-white border rounded-lg shadow-md shadow-blue-400/25">
+      <p class="mb-5 text-xl font-bold">{{ question.statement }}</p>
   
       @for (answer of question.answerEntities; track answer.id) {
         <div class="flex items-center w-full">
-          <input class="peer px-2 py-4 size-6 hidden" type="radio" id="{{ answer.id }}" name="{{ question.id }}" value="{{ answer.value }}" (change)="handleChooseAnswer(answer.id ? answer.id : 0, question.id ? question.id : 0)" />
-          <label for="{{ answer.id }}" class="peer-checked:bg-gradient-to-tr peer-checked:from-blue-400 peer-checked:to-cyan-400 peer-checked:text-white transition px-4 w-full text-start bg-slate-100 rounded-lg border text-xl py-3 ml-2 font-semibold">{{ answer.statement }}</label>
+          <input class="hidden px-2 py-4 peer size-6" type="radio" id="{{ answer.id }}" name="{{ question.id }}" value="{{ answer.value }}" (change)="handleChooseAnswer(answer.id ? answer.id : 0, question.id ? question.id : 0)" />
+          <label for="{{ answer.id }}" class="w-full px-4 py-3 ml-2 text-xl font-semibold transition border rounded-lg peer-checked:bg-gradient-to-tr peer-checked:from-blue-400 peer-checked:to-cyan-400 peer-checked:text-white text-start bg-slate-100">{{ answer.statement }}</label>
         </div>
       }
     </div>

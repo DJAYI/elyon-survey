@@ -26,11 +26,13 @@ export class StepThreeComponent implements OnInit {
       answerId: 0,
     }
 
-    this.questions = [];
   }
 
-  ngOnInit(): void {
-    this.questions = this.dataService.getSurveyQuestions(this.surveyId())
+  ngOnInit() {
+    this.dataService.getSurveyQuestions(this.surveyId(), () => {
+      this.questions = this.dataService.questions;
+      console.log(this.questions);
+    })
   }
 
   handleSubmit() {

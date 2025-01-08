@@ -26,6 +26,6 @@ export class StepTwoComponent {
   }
 
   handleSelectSurvey(surveyId?: string) {
-    this.stepperService.responseSurvey.surveyId = surveyId ? surveyId : '';
+    this.stepperService.responseSurvey.surveyId = surveyId;
   }
 }
