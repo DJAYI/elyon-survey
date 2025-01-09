@@ -41,8 +41,9 @@ export class LoginComponent {
   login() {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe((res) => {
-        if (res.token) {
+        if (res) {
           this.router.navigate(['/admin']);
+          console.log(res);
         }
       });
     }

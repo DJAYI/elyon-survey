@@ -1,4 +1,3 @@
-
 services:
   api_surveys:
     build: backend/surveys
