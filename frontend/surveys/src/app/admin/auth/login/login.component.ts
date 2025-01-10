@@ -43,7 +43,9 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value).subscribe((res) => {
         if (res) {
           this.router.navigate(['/admin']);
-          console.log(res);
+        } else {
+          console.log('Error');
+          this.loginForm.reset();
         }
       });
     }

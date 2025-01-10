@@ -1,18 +1,30 @@
+import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { SsrCookieService } from 'ngx-cookie-service-ssr';
+import { lastValueFrom } from 'rxjs';
 
-export const authGuard: CanActivateFn = (route, state) => {
+export const authGuard: CanActivateFn = (_route, state) => {
 
-  const cookieService: SsrCookieService = inject(SsrCookieService);
 
   const router: Router = inject(Router);
+  const http: HttpClient = inject(HttpClient);
 
-  if (cookieService.check('access_token')) {
-    return true;
-  }
+  // Check if the user is authenticated by checking the cookie
 
-  router.navigate(['/auth/login']);
-  return false;
+  const authVerification = lastValueFrom(http.get<boolean>('http://localhost:8080/api/v1/auth/admin', {
+    withCredentials: true
+  }));
 
+  return authVerification.then(data => {
+    if (data) {
+      return true;
+    } else {
+      router.navigate(['/auth/login']);
+      return false;
+    }
+  }).catch(e => {
+    console.log("Error: " + e);
+    router.navigate(['/auth/login']);
+    return false;
+  });
 };

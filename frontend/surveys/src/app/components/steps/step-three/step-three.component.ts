@@ -31,7 +31,6 @@ export class StepThreeComponent implements OnInit {
   ngOnInit() {
     this.dataService.getSurveyQuestions(this.surveyId(), () => {
       this.questions = this.dataService.questions;
-      console.log(this.questions);
     })
   }
 

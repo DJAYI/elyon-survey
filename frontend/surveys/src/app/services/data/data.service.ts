@@ -36,7 +36,6 @@ export class DataService {
     ).subscribe({
       next: data => {
         this.questions = data;
-        console.log(this.questions);
         callback(true); // Éxito
       },
       error: e => {
