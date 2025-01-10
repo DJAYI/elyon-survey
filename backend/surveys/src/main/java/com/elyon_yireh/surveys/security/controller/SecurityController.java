@@ -44,4 +44,20 @@ public class SecurityController {
                 .body(this.userDetailsService.loginUser(userRequest));
     }
 
+    @GetMapping("/admin")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<Boolean> admin(Authentication authentication){
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("READ"))){
+            return ResponseEntity.ok(true);
+        }
+        return ResponseEntity.ok(false);
+    }
+
+    @PostMapping("/logout")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<Boolean> logout(HttpServletResponse response) {
+        response.setHeader(HttpHeaders.SET_COOKIE, "access_token =; Max-Age=0; Path=/; HttpOnly; SameSite=None; Secure");
+        return ResponseEntity.ok(true);
+    }
+
 }
