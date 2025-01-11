@@ -1,24 +1,24 @@
 <div class="absolute top-0 left-0 flex flex-row max-w-sm sm:relative w-72 h-dvh">
 
-<nav [ngClass]="{'hide-nav': toggleMenu}" class="w-64 h-full p-4 text-white transition bg-gray-800 backdrop:blur-sm">
+<nav [ngClass]="{'hide-nav': toggleMenu}" class="w-64 h-full p-4 text-white transition bg-gray-800">
   <ul class="flex flex-col h-full gap-4">
     <li class="w-full">
-      <a [ngClass]="{'bg-gray-700': isTabActive(0), 'hover:bg-gray-700': !isTabActive(0)}" class="block w-full px-4 py-2 transition rounded-lg cursor-pointer" (click)="handleCurrentTab(0)" [routerLink]="['./']" (keydown.enter)="handleCurrentTab(0)" tabindex="0">
+      <a [ngClass]="{'bg-gradient-to-tr from-green-400 to-cyan-500 text-blue-950 font-semibold': isTabActive(0), 'hover:bg-gray-700': !isTabActive(0)}" class="block w-full px-4 py-2 transition rounded-lg cursor-pointer" (click)="handleCurrentTab(0)" [routerLink]="['./']" (keydown.enter)="handleCurrentTab(0)" tabindex="0">
         Inicio
       </a>
     </li>
     <li class="w-full">
-      <a [ngClass]="{'bg-gray-700': isTabActive(1), 'hover:bg-gray-700': !isTabActive(1)}" class="block w-full px-4 py-2 transition rounded-lg cursor-pointer" (click)="handleCurrentTab(1)" [routerLink]="['analytics']" (keydown.enter)="handleCurrentTab(1)" tabindex="0">
+      <a [ngClass]="{'bg-gradient-to-tr from-green-400 to-cyan-500 text-blue-950 font-semibold': isTabActive(1), 'hover:bg-gray-700': !isTabActive(1)}" class="block w-full px-4 py-2 transition rounded-lg cursor-pointer" (click)="handleCurrentTab(1)" [routerLink]="['analytics']" (keydown.enter)="handleCurrentTab(1)" tabindex="0">
         Analiticas
       </a>
     </li>
     <li class="w-full">
-      <a [ngClass]="{'bg-gray-700': isTabActive(2), 'hover:bg-gray-700': !isTabActive(2)}" class="block w-full px-4 py-2 transition rounded-lg cursor-pointer" (click)="handleCurrentTab(2)" [routerLink]="['surveys']" (keydown.enter)="handleCurrentTab(2)" tabindex="0">
+      <a [ngClass]="{'bg-gradient-to-tr from-green-400 to-cyan-500 text-blue-950 font-semibold': isTabActive(2), 'hover:bg-gray-700': !isTabActive(2)}" class="block w-full px-4 py-2 transition rounded-lg cursor-pointer" (click)="handleCurrentTab(2)" [routerLink]="['surveys']" (keydown.enter)="handleCurrentTab(2)" tabindex="0">
         Encuestas
       </a>
     </li>
     <li class="w-full">
-      <a [ngClass]="{'bg-gray-700': isTabActive(3), 'hover:bg-gray-700': !isTabActive(3)}" class="block w-full px-4 py-2 transition rounded-lg cursor-pointer" (click)="handleCurrentTab(3)" [routerLink]="['users']" (keydown.enter)="handleCurrentTab(3)" tabindex="0">
+      <a [ngClass]="{'bg-gradient-to-tr from-green-400 to-cyan-500 text-blue-950 font-semibold': isTabActive(3), 'hover:bg-gray-700': !isTabActive(3)}" class="block w-full px-4 py-2 transition rounded-lg cursor-pointer" (click)="handleCurrentTab(3)" [routerLink]="['users']" (keydown.enter)="handleCurrentTab(3)" tabindex="0">
         Usuarios
       </a>
     </li>
@@ -30,7 +30,7 @@
   </ul>
 </nav>
 
-<button (click)="toggleSidebar()" class="self-start px-3 py-2 mt-2 bg-white border border-blue-500 rounded-e-lg w-fit hover:bg-blue-700 stroke-black fill-none hover:stroke-white">
+<button (click)="toggleSidebar()" class="self-start px-3 py-2 mt-2 transition bg-white border-2 border-blue-500 shadow-md rounded-e-lg w-fit hover:bg-blue-500 stroke-black fill-none hover:stroke-white">
     
     <!-- <ng-container *ngIf="!toggleMenu; else elseBlock"> -->
     
