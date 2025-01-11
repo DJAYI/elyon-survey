@@ -4,6 +4,10 @@
 @tailwind utilities;
 @tailwind screens;
 
+:root {
+  color-scheme: only light;
+}
+
 .loader {
   width: 88px;
   height: 12px;
