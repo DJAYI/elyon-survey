@@ -10,11 +10,14 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
     styleUrl: './admin.component.css'
 })
 export class AdminComponent implements OnInit {
-    constructor(public authService: AuthenticationService) { }
 
-    ngOnInit(): void {
-        setInterval(() => {
-            this.authService.checkAuthenticated();
-        }, 10000);
+    constructor(public authService: AuthenticationService) {
     }
+
+    async ngOnInit(): Promise<void> {
+        do {
+            this.authService.checkAuthenticated();
+        } while (await this.authService.checkAuthenticated() == false);
+    }
+
 }

@@ -22,12 +22,12 @@ export class AuthenticationService {
     });
   }
 
-  checkAuthenticated() {
+  async checkAuthenticated(): Promise<boolean> {
     const authVerification = lastValueFrom(this.http.get<boolean>('http://localhost:8080/api/v1/auth/admin', {
       withCredentials: true
     }));
 
-    authVerification.then(res => {
+    return await authVerification.then(res => {
       if (res) {
         console.log("User is authenticated");
         return true;
@@ -40,6 +40,5 @@ export class AuthenticationService {
       this.router.navigate(['/auth/']);
       return false;
     })
-
   }
 }
