@@ -7,6 +7,7 @@ import { providePrimeNG } from 'primeng/config';
 
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideClientHydration } from '@angular/platform-browser';
+import { MessageService } from 'primeng/api';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -22,6 +23,7 @@ export const appConfig: ApplicationConfig = {
           darkModeSelector: false
         }
       }
-    })
+    }),
+    MessageService
   ],
 };

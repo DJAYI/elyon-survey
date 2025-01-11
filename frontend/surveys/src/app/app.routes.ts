@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin/admin.component';
 import { AnalyticsComponent } from './admin/analytics/analytics.component';
 import { AuthComponent } from './admin/auth/auth.component';
-import { LoginComponent } from './admin/auth/login/login.component';
 import { SurveysComponent } from './admin/surveys/surveys.component';
 import { UsersComponent } from './admin/users/users.component';
 import { StepperComponent } from './components/stepper/stepper.component';
@@ -20,13 +19,7 @@ export const routes: Routes = [
   {
     path: 'auth',
     component: AuthComponent,
-    canActivateChild: [loginGuard],
-    children: [
-      {
-        path: 'login',
-        component: LoginComponent
-      }
-    ]
+    canActivate: [loginGuard],
   },
   {
     path: 'admin',

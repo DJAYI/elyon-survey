@@ -28,7 +28,7 @@ export class SidebarMenuComponent {
         lastValueFrom(this.http.post('http://localhost:8080/api/v1/auth/logout', {}, {
             withCredentials: true
         })).then(() => {
-            this.router.navigate(['/auth/login']);
+            this.router.navigate(['/auth']);
         }).catch(e => {
             console.log("Error: " + e);
         });
