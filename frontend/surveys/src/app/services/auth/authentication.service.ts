@@ -33,11 +33,9 @@ export class AuthenticationService {
         return true;
       }
       console.log("User is not authenticated");
-      this.router.navigate(['/auth/']);
       return false;
     }).catch(() => {
       console.log("Error checking authentication");
-      this.router.navigate(['/auth/']);
       return false;
     })
   }
