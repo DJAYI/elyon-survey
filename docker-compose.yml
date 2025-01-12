@@ -1,4 +1,20 @@
 services:
+  frontend:
+    build: frontend/surveys
+    mem_limit: 512m
+
+    ports:
+      - "4200:4200"
+    
+    environment:
+      - API_URL=http://api_surveys:8080
+
+    restart: always
+    depends_on:
+      api_surveys:
+        condition: service_started
+
+
   api_surveys:
     build: backend/surveys
     mem_limit: 512m
