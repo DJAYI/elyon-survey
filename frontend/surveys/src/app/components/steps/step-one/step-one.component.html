@@ -1,13 +1,13 @@
 <h5 class="mt-2 mb-5 text-xl font-semibold text-center">Brindanos tus Datos personales</h5>
-<p class="text-sm text-center text-gray-500 text-pretty mb-10">
+<p class="mb-10 text-sm text-center text-gray-500 text-pretty">
   En Elyon Yireh, protegemos tus datos personales y garantizamos su uso exclusivo para el mejoramiento nuestros servicios. No compartiremos tu información con terceros, salvo por obligación legal o con tu consentimiento expreso.
 </p>
 
-<hr class="w-full bg-black mb-5">
+<hr class="w-full mb-5 bg-black">
 
 <form [formGroup]="respondentForm" class="my-4">
   <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-    <div class="col-span-2">
+    <div class="col-span-2 md:col-span-1">
       <label for="firstname" class="block mb-2 text-sm font-medium text-gray-900">Nombre</label>
       <input type="text" id="firstname" formControlName="firstname" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 p-2.5 outline-none">
 
@@ -25,7 +25,7 @@
 
     </div>
 
-    <div class="col-span-2">
+    <div class="col-span-2 md:col-span-1">
       <label for="lastname" class="block mb-2 text-sm font-medium text-gray-900">Apellido</label>
       <input type="text" id="lastname" formControlName="lastname" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 p-2.5 outline-none">
 
