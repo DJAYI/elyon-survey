@@ -5,9 +5,11 @@ import com.elyon_yireh.surveys.domain.dto.HttpResponseDto;
 import com.elyon_yireh.surveys.domain.dto.HttpResponseListDto;
 import com.elyon_yireh.surveys.domain.entities.SurveyEntity;
 import com.elyon_yireh.surveys.service.interfaces.survey.SurveyQueryService;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
+@Service
 public class SurveyQueryImpl implements SurveyQueryService {
     private SurveyDao surveyDao;
 

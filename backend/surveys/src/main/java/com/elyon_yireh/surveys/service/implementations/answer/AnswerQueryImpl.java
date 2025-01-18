@@ -8,12 +8,19 @@ import com.elyon_yireh.surveys.domain.entities.AnswerEntity;
 import com.elyon_yireh.surveys.domain.entities.QuestionEntity;
 import com.elyon_yireh.surveys.domain.entities.SurveyEntity;
 import com.elyon_yireh.surveys.service.interfaces.answer.AnswerQueryService;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
+@Service
 public class AnswerQueryImpl implements AnswerQueryService {
     private QuestionDao questionDao;
     private SurveyDao surveyDao;
+
+    public AnswerQueryImpl(QuestionDao questionDao, SurveyDao surveyDao) {
+        this.questionDao = questionDao;
+        this.surveyDao = surveyDao;
+    }
 
     @Override
     public HttpResponseListDto<AnswerEntity> getAnswers(UUID surveyId, Long questionId) {

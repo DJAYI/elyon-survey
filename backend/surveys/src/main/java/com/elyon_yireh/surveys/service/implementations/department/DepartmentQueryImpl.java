@@ -5,7 +5,9 @@ import com.elyon_yireh.surveys.domain.dto.HttpResponseDto;
 import com.elyon_yireh.surveys.domain.dto.HttpResponseListDto;
 import com.elyon_yireh.surveys.domain.entities.DepartmentEntity;
 import com.elyon_yireh.surveys.service.interfaces.department.DepartmentQueryService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DepartmentQueryImpl implements DepartmentQueryService {
     DepartmentDao departmentDao;
 
@@ -18,7 +20,7 @@ public class DepartmentQueryImpl implements DepartmentQueryService {
         if (departmentId == null) {
             return new HttpResponseDto<>("Department ID is required", "DEPARTMENT_ID_REQUIRED", "error", null);
         }
-        
+
         return departmentDao.findById(departmentId)
                 .map(departmentEntity -> new HttpResponseDto<>("Department retrieved", "DEPARTMENT_FOUND", "success", departmentEntity))
                 .orElseGet(() -> new HttpResponseDto<>("Department not found", "DEPARTMENT_NOT_FOUND", "error", null));

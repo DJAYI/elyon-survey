@@ -6,10 +6,12 @@ import com.elyon_yireh.surveys.domain.dto.HttpResponseListDto;
 import com.elyon_yireh.surveys.domain.entities.QuestionEntity;
 import com.elyon_yireh.surveys.domain.entities.SurveyEntity;
 import com.elyon_yireh.surveys.service.interfaces.question.QuestionQueryService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
+@Service
 public class QuestionQueryImpl implements QuestionQueryService {
     private SurveyDao surveyDao;
 

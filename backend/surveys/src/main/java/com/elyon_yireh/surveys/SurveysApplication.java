@@ -1,7 +1,7 @@
 package com.elyon_yireh.surveys;
 
+import com.elyon_yireh.surveys.domain.dao.DepartmentDao;
 import com.elyon_yireh.surveys.domain.entities.DepartmentEntity;
-import com.elyon_yireh.surveys.repository.mysql.DepartmentRepository;
 import com.elyon_yireh.surveys.security.entities.PermissionEntity;
 import com.elyon_yireh.surveys.security.entities.RoleEntity;
 import com.elyon_yireh.surveys.security.entities.UserEntity;
@@ -22,7 +22,7 @@ public class SurveysApplication {
     }
 
     @Bean
-    CommandLineRunner init(UserRepository userRepository, DepartmentRepository departmentRepository) {
+    CommandLineRunner init(UserRepository userRepository, DepartmentDao departmentRepository) {
         return args -> {
             DepartmentEntity sistemas = DepartmentEntity.builder().code("SYS").name("Dirección TI").build();
             DepartmentEntity calidad = DepartmentEntity.builder().code("CAL").name("Dirección de Calidad").build();
