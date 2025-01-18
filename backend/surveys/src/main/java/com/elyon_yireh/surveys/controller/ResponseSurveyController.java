@@ -31,7 +31,7 @@ public class ResponseSurveyController {
 
     @PreAuthorize("permitAll()")
     @PostMapping
-    public HttpResponseDto<ResponseSurveyEntity> createResponse(@Valid @RequestBody SaveResponseDto saveResponseDto) {
+    public HttpResponseDto<Iterable<ResponseSurveyEntity>> createResponse(@Valid @RequestBody SaveResponseDto saveResponseDto) {
         return surveyResponseImpl.createResponse(saveResponseDto);
     }
 }

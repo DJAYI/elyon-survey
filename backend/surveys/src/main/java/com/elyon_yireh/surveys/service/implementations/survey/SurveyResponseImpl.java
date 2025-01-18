@@ -9,7 +9,8 @@ import com.elyon_yireh.surveys.domain.entities.*;
 import com.elyon_yireh.surveys.service.interfaces.survey.SurveyResponseService;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -31,13 +32,27 @@ public class SurveyResponseImpl implements SurveyResponseService {
     }
 
     @Override
-    public HttpResponseDto<ResponseSurveyEntity> createResponse(SaveResponseDto saveResponseDto) {
+    public HttpResponseDto createResponse(SaveResponseDto saveResponseDto) {
         // Obtener la encuesta por ID
         SurveyEntity surveyEntity = surveyDao.findById(saveResponseDto.surveyId())
                 .orElse(null);
 
         if (surveyEntity == null) {
             return new HttpResponseDto<>("Survey not found", "SURVEY_NOT_FOUND", "error", null);
+        }
+
+        // Verificar que todas las preguntas tienen respuestas y que no hay duplicados
+        Set<Long> questionIdsInSurvey = surveyEntity.getQuestionEntities().stream()
+                .map(QuestionEntity::getId)
+                .collect(Collectors.toSet());
+
+        Set<Long> providedQuestionIds = saveResponseDto.responses().stream()
+                .map(QuestionAnswerDto::questionId)
+                .collect(Collectors.toSet());
+
+        if (!questionIdsInSurvey.equals(providedQuestionIds)) {
+            return new HttpResponseDto<>("Mismatch between survey questions and responses",
+                    "INVALID_RESPONSES", "error", null);
         }
 
         // Crear y guardar el respondiente
@@ -52,14 +67,12 @@ public class SurveyResponseImpl implements SurveyResponseService {
                 .build();
         respondentDao.save(respondent);
 
-        Set<Long> processedQuestionIds = new HashSet<>();
-
-        // Crear y guardar la respuesta
+        // Crear y guardar las respuestas
+        List<ResponseSurveyEntity> responseSurveyEntities = new ArrayList<>();
 
         for (QuestionAnswerDto questionAnswerDto : saveResponseDto.responses()) {
-            System.out.println(questionAnswerDto);
             QuestionEntity questionEntity = surveyEntity.getQuestionEntities().stream()
-                    .filter(question -> question.getId().equals(questionAnswerDto.questionId()))
+                    .filter(q -> q.getId().equals(questionAnswerDto.questionId()))
                     .findFirst()
                     .orElse(null);
 
@@ -67,12 +80,8 @@ public class SurveyResponseImpl implements SurveyResponseService {
                 return new HttpResponseDto<>("Question not found", "QUESTION_NOT_FOUND", "error", null);
             }
 
-            if (!processedQuestionIds.add(questionAnswerDto.questionId())) {
-                return new HttpResponseDto<>("Duplicate question found", "DUPLICATE_QUESTION", "error", null);
-            }
-
             AnswerEntity answerEntity = questionEntity.getAnswerEntities().stream()
-                    .filter(answer -> answer.getId().equals(questionAnswerDto.answerId()))
+                    .filter(a -> a.getId().equals(questionAnswerDto.answerId()))
                     .findFirst()
                     .orElse(null);
 
@@ -87,16 +96,12 @@ public class SurveyResponseImpl implements SurveyResponseService {
                     .answerEntity(answerEntity)
                     .build();
 
-            if (saveResponseDto.responses().size() != surveyEntity.getQuestionEntities().size()) {
-                return new HttpResponseDto<>("Some questions were not answered", "UNANSWERED_QUESTIONS", "error", null);
-            }
-
-            return new HttpResponseDto<>("Response created", "RESPONSE_CREATED", "success", responseSurveyDao.save(responseSurveyEntity));
+            responseSurveyEntities.add(responseSurveyEntity);
         }
 
-
-        return new HttpResponseDto<>("Response processed", "RESPONSE_PROCESSED", "success", null);
+        return new HttpResponseDto<>("Response processed", "RESPONSE_PROCESSED", "success", responseSurveyDao.saveAll(responseSurveyEntities));
     }
+
 
     @Override
     public HttpResponseDto<ResponseSurveyEntity> getResponse(Long responseId) {
