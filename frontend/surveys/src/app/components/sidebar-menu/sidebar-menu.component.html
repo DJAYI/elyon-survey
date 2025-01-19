@@ -9,17 +9,17 @@
     </li>
     <li class="w-full">
       <a [ngClass]="{'bg-gradient-to-tr from-green-400 to-cyan-500 text-blue-950 font-semibold': isTabActive(1), 'hover:bg-gray-700': !isTabActive(1)}" class="block w-full px-4 py-2 transition rounded-lg cursor-pointer" (click)="handleCurrentTab(1)" [routerLink]="['analytics']" (keydown.enter)="handleCurrentTab(1)" tabindex="0">
-        Analiticas
+        Auditoría de Respuestas
       </a>
     </li>
     <li class="w-full">
       <a [ngClass]="{'bg-gradient-to-tr from-green-400 to-cyan-500 text-blue-950 font-semibold': isTabActive(2), 'hover:bg-gray-700': !isTabActive(2)}" class="block w-full px-4 py-2 transition rounded-lg cursor-pointer" (click)="handleCurrentTab(2)" [routerLink]="['surveys']" (keydown.enter)="handleCurrentTab(2)" tabindex="0">
-        Encuestas
+        Gestión de Encuestas
       </a>
     </li>
     <li class="w-full">
       <a [ngClass]="{'bg-gradient-to-tr from-green-400 to-cyan-500 text-blue-950 font-semibold': isTabActive(3), 'hover:bg-gray-700': !isTabActive(3)}" class="block w-full px-4 py-2 transition rounded-lg cursor-pointer" (click)="handleCurrentTab(3)" [routerLink]="['users']" (keydown.enter)="handleCurrentTab(3)" tabindex="0">
-        Usuarios
+        Gestión de Usuarios
       </a>
     </li>
     <li class="w-full mt-auto">
