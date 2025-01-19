@@ -59,6 +59,6 @@ export class StepperService {
   }
 
   handleSubmitResponse() {
-    this.dataService.postSurveyResponse(this.responseSurvey).subscribe();
+    this.dataService.postSurveyResponse(this.responseSurvey)
   }
 }

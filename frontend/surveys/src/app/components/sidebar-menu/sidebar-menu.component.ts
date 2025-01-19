@@ -1,7 +1,8 @@
 import { NgClass } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { AuthenticationService } from '../../services/auth/authentication.service';
 
 @Component({
     selector: 'app-sidebar-menu',
@@ -12,8 +13,9 @@ import { Router, RouterLink } from '@angular/router';
 export class SidebarMenuComponent {
     currentTab = 0;
     toggleMenu = false;
+    router = inject(Router);
 
-    constructor(public http: HttpClient, public router: Router) { }
+    constructor(public http: HttpClient, public authService: AuthenticationService) { }
     handleCurrentTab(tab: number) {
         this.currentTab = tab;
     }
@@ -22,7 +24,9 @@ export class SidebarMenuComponent {
         return this.currentTab === tab;
     }
 
-    
+    logout() {
+        this.authService.logout();
+    }
 
     toggleSidebar() {
         this.toggleMenu = !this.toggleMenu;

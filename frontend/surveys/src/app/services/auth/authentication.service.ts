@@ -12,9 +12,10 @@ import { DataService } from '../data/data.service';
 export class AuthenticationService {
   cookieService: SsrCookieService = inject(SsrCookieService);
 
+  router = inject(Router);
 
   url = 'http://localhost:8080/';
-  constructor(private http: HttpClient, private dataService: DataService, private router: Router) { }
+  constructor(private http: HttpClient, private dataService: DataService) { }
 
   login(credentials: LoginUser) {
     return this.http.post<AuthResponse>('http://localhost:8080/api/v1/auth/login', credentials, {
@@ -28,7 +29,7 @@ export class AuthenticationService {
       withCredentials: true
     }).subscribe({
       next: () => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/auth']);
       },
       error: e => console.log("Error: " + e)
     });

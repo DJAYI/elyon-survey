@@ -28,10 +28,8 @@ export class StepThreeComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    this.dataService.getSurveyQuestions(this.surveyId(), () => {
-      this.questions = this.dataService.questions;
-    })
+  async ngOnInit(): Promise<void> {
+    this.questions = await this.dataService.getSurveyQuestions(this.surveyId());
   }
 
   handleSubmit() {
