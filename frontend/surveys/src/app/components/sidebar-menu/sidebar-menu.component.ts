@@ -2,7 +2,6 @@ import { NgClass } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { lastValueFrom } from 'rxjs';
 
 @Component({
     selector: 'app-sidebar-menu',
@@ -23,16 +22,7 @@ export class SidebarMenuComponent {
         return this.currentTab === tab;
     }
 
-    logout() {
-        // Logout logic here
-        lastValueFrom(this.http.post('http://localhost:8080/api/v1/auth/logout', {}, {
-            withCredentials: true
-        })).then(() => {
-            this.router.navigate(['/auth']);
-        }).catch(e => {
-            console.log("Error: " + e);
-        });
-    }
+    
 
     toggleSidebar() {
         this.toggleMenu = !this.toggleMenu;

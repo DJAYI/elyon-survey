@@ -21,7 +21,7 @@ export class DataService {
       responseType: 'json'
     }).subscribe({
       next: data => {
-        this.surveys = data;
+        console.log(data);
       },
       error: e => console.log("Error: " + e)
     });
@@ -35,7 +35,7 @@ export class DataService {
       }
     ).subscribe({
       next: data => {
-        this.questions = data;
+        console.log(data);
         callback(true); // Éxito
       },
       error: e => {
@@ -48,6 +48,11 @@ export class DataService {
   public postSurveyResponse(response: ResponseSurvey) {
     return this.http.post(`${this.host}/responses`, response, {
       responseType: 'json',
-    });
+    }).subscribe({
+      next: data => {
+        console.log(data);
+      },
+      error: e => console.log("Error: " + e)
+    })
   }
 }

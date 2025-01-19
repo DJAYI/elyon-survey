@@ -22,6 +22,18 @@ export class AuthenticationService {
     });
   }
 
+  logout() {
+    // Logout logic here
+    this.http.post('http://localhost:8080/api/v1/auth/logout', {}, {
+      withCredentials: true
+    }).subscribe({
+      next: () => {
+        this.router.navigate(['/login']);
+      },
+      error: e => console.log("Error: " + e)
+    });
+  }
+
   async checkAuthenticated(): Promise<boolean> {
     const authVerification = lastValueFrom(this.http.get<boolean>('http://localhost:8080/api/v1/auth/admin', {
       withCredentials: true

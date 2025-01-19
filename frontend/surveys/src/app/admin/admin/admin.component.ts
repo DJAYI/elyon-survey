@@ -11,7 +11,7 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
 })
 export class AdminComponent implements OnInit {
 
-    session: any
+    session: boolean | undefined = false;
     router = inject(Router);
 
     constructor(public authService: AuthenticationService) {
