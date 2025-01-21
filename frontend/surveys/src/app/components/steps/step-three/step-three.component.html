@@ -5,17 +5,18 @@
     <div class="loader"></div> 
   }
 
+  <div class="flex flex-col w-full gap-3 p-5 bg-white border rounded-lg shadow-md shadow-blue-400/25">
   @for (question of questions; track question.id) {
-    <div class="flex flex-col w-full gap-3 p-5 text-center bg-white border rounded-lg shadow-md shadow-blue-400/25">
-      <p class="mb-5 text-xl font-bold">{{ question.statement }}</p>
+      <p class="mb-5 text-xl font-bold ms-4">{{ question.statement }}</p>
   
       @for (answer of question.answerEntities; track answer.id) {
         <div class="flex items-center w-full">
           <input class="hidden px-2 py-4 peer size-6" type="radio" id="{{ answer.id }}" name="{{ question.id }}" value="{{ answer.value }}" (change)="handleChooseAnswer(answer.id ? answer.id : 0, question.id ? question.id : 0)" />
-          <label for="{{ answer.id }}" class="w-full px-4 py-3 ml-2 text-xl font-semibold transition border rounded-lg peer-checked:bg-gradient-to-tr peer-checked:from-blue-400 peer-checked:to-cyan-400 peer-checked:text-white text-start bg-slate-100">{{ answer.statement }}</label>
+          <label for="{{ answer.id }}" class="w-full px-4 py-3 ml-2 text-lg font-semibold transition border-2 border-blue-200 rounded-lg cursor-pointer peer-checked:bg-gradient-to-tr peer-checked:border-4 peer-checked:from-blue-400 peer-checked:to-cyan-400 peer-checked:border-indigo-400/60 peer-checked:text-white text-start bg-slate-100">{{$index + 1}}. {{ answer.statement }}</label>
         </div>
       }
-    </div>
-  } 
+      <br>
+    } 
+  </div>
 
 </main>

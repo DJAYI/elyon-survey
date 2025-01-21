@@ -4,6 +4,7 @@ import { lastValueFrom } from 'rxjs';
 import { HttpResponse } from '../../model/http-response';
 import { ResponseSurvey } from '../../model/response';
 import { QuestionEntity, Survey } from '../../model/survey';
+import { ToastService } from '../utils/toast/toast.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class DataService {
   recoveredSurveys: Survey[] = [];
   recoveredQuestions: QuestionEntity[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private toastService: ToastService) {
   }
 
   public async getSurveys(): Promise<Survey[]> {
@@ -47,13 +48,22 @@ export class DataService {
   }
 
   public postSurveyResponse(response: ResponseSurvey) {
-    return this.http.post(`${this.host}/responses`, response, {
+    return this.http.post<HttpResponse<unknown>>(`${this.host}/responses`, response, {
       responseType: 'json',
     }).subscribe({
       next: data => {
-        console.log(data);
+        if (data.status === 'success') {
+          this.toastService.addToastMessage('success', 'Respuesta enviada!', 'Respueta enviada correctamente, gracias por participar');
+        } else {
+          this.toastService.addToastMessage('error', 'Error al enviar respuesta', 'Ocurrió un error al enviar la respuesta, por favor intenta de nuevo');
+        }
+        this.toastService.showToasts();
       },
-      error: e => console.log("Error: " + e)
+      error: e => {
+        console.log(e);
+        this.toastService.addToastMessage('error', 'Error al enviar respuesta', 'Ocurrió un error al enviar la respuesta, por favor intenta de nuevo');
+        this.toastService.showToasts();
+      }
     })
   }
 }

@@ -12,7 +12,7 @@ export class StepperService {
   currentStep: number;
 
   constructor(public dataService: DataService) {
-    this.currentStep = 0;
+    this.currentStep = 2;
 
     this.respondent = {
       firstname: '',
@@ -27,7 +27,7 @@ export class StepperService {
     this.response = new Map();
 
     this.responseSurvey = {
-      surveyId: '',
+      surveyId: 'b19cd6e5-b843-4a9d-95c4-11b386efd003',
       responses: [],
       respondent: this.respondent,
     }

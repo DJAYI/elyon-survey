@@ -32,14 +32,23 @@ export class StepperComponent {
   }
 
   handleSubmitResponse() {
-    try {
-      this.stepperService.handleSubmitResponse();
-      this.toastService.addToastMessage('success', 'Respuesta enviada!', 'Respueta enviada correctamente, gracias por participar');
-
-    } catch {
-      this.toastService.addToastMessage('error', 'Error al enviar respuesta', 'Ocurrió un error al enviar la respuesta, por favor intenta de nuevo');
-    }
-    this.toastService.showToasts();
+    this.stepperService.handleSubmitResponse();
     this.stepperService.currentStep = 0;
   }
+
+  isDisabled(): boolean {
+    // Obtén la longitud de las preguntas recuperadas
+    const recoveredQuestionsLength = this.dataService.recoveredQuestions.length;
+
+    // Obtén la longitud de las respuestas, o 0 si no existen
+    const responsesLength = this.stepperService.responseSurvey.responses?.length || 0;
+
+    // Validaciones individuales
+    const hasMoreRecoveredQuestions = recoveredQuestionsLength > responsesLength;
+    const hasNoResponses = responsesLength <= 0;
+
+    // Combina las validaciones
+    return hasMoreRecoveredQuestions && hasNoResponses;
+  }
+
 }
