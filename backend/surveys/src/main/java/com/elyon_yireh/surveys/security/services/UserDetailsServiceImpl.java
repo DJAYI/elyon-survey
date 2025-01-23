@@ -6,8 +6,6 @@ import com.elyon_yireh.surveys.security.entities.UserEntity;
 import com.elyon_yireh.surveys.security.repository.UserRepository;
 import com.elyon_yireh.surveys.security.utils.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.session.DefaultCookieSerializerCustomizer;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseCookie;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,11 +17,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.session.web.http.CookieSerializer;
-import org.springframework.session.web.http.DefaultCookieSerializer;
 import org.springframework.stereotype.Service;
 
-import javax.xml.datatype.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
-    
+
     @Autowired
     private JwtUtils jwtUtils;
 
@@ -79,9 +74,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
             // Add cookie to response
 
-            return new AuthResponse(username, "User logged successfully", cookie.toString());
+            return new AuthResponse(username, "User logged successfully", "success", cookie.toString());
         } catch (Error e) {
-            return new AuthResponse(username, "User couldn't login unsuccessfully", null);
+            return new AuthResponse(username, "User with invalid credentials", "error", null);
         }
     }
 
