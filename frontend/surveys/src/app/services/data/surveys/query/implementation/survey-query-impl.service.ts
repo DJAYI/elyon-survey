@@ -1,17 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { QuestionEntity, Survey } from '../../model/survey';
-import { SurveyQueryService } from './surveys/query/survey-query.service';
+import { QuestionEntity, Survey } from '../../../../../model/survey';
+import { SurveyQueryService } from '../survey-query.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class DataService {
-  host = 'http://localhost:8080/api/v1';
+export class SurveyQueryImplService {
+
   recoveredSurveys: Survey[] = [];
   recoveredQuestions: QuestionEntity[] = [];
 
   constructor(private http: HttpClient, private surveyQueryService: SurveyQueryService) {
+    this.getSurveys();
   }
 
   public getSurveys() {
@@ -19,7 +20,7 @@ export class DataService {
       next: data => {
         if (data.status === 'success') {
           this.recoveredSurveys = data.data as Survey[];
-          console.log(this.recoveredSurveys);
+          console.log(data.message);
         } else {
           console.log(data.message);
         }
@@ -36,7 +37,6 @@ export class DataService {
       next: data => {
         if (data.status === 'success') {
           this.recoveredQuestions = data.data as QuestionEntity[];
-          console.log(this.recoveredQuestions);
         } else {
           console.log(data.message);
         }
@@ -47,6 +47,4 @@ export class DataService {
       }
     })
   }
-
-
 }

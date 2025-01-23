@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { DataService } from '../../services/data/data.service';
+import { SurveyQueryImplService } from '../../services/data/surveys/query/implementation/survey-query-impl.service';
 import { ResponseService } from '../../services/data/surveys/response/response.service';
 import { StepperService } from '../../services/stepper/stepper.service';
 import { ToastService } from '../../services/utils/toast/toast.service';
@@ -20,7 +20,7 @@ export class StepperComponent {
   constructor(
     public responseService: ResponseService,
     public stepperService: StepperService,
-    public dataService: DataService,
+    public surveyQueryImpl: SurveyQueryImplService,
     public toastService: ToastService,
   ) {
   }
@@ -40,7 +40,7 @@ export class StepperComponent {
 
   isDisabled(): boolean {
     // Obtén la longitud de las preguntas recuperadas
-    const recoveredQuestionsLength = this.dataService.recoveredQuestions.length;
+    const recoveredQuestionsLength = this.surveyQueryImpl.recoveredQuestions.length;
 
     // Obtén la longitud de las respuestas, o 0 si no existen
     const responsesLength = this.responseService.responseSurvey.responses?.length || 0;

@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { SsrCookieService } from 'ngx-cookie-service-ssr';
 import { lastValueFrom } from 'rxjs';
 import { AuthResponse, LoginUser } from '../../model/auth-response';
-import { DataService } from '../data/data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,7 @@ export class AuthenticationService {
   router = inject(Router);
 
   url = 'http://localhost:8080/';
-  constructor(private http: HttpClient, private dataService: DataService) { }
+  constructor(private http: HttpClient) { }
 
   login(credentials: LoginUser) {
     return this.http.post<AuthResponse>('http://localhost:8080/api/v1/auth/login', credentials, {
