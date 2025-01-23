@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Respondent, Response, ResponseSurvey } from '../../../../model/survey-response';
-import { DataService } from '../../data.service';
+import { StepperService } from '../../../stepper/stepper.service';
+import { ResponseQueryService } from './response-query.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ResponseService {
   response: Map<number, number>;
   responseSurvey: ResponseSurvey;
 
-  constructor(private dataService: DataService) {
+  constructor(private responseQueryService: ResponseQueryService, private stepperService: StepperService) {
     this.respondent = {
       firstname: '',
       lastname: '',
@@ -47,6 +48,22 @@ export class ResponseService {
   }
 
   handleSubmitResponse() {
-    this.dataService.postSurveyResponse(this.responseSurvey)
+    this.responseQueryService.postSurveyResponse(this.responseSurvey).subscribe({
+      next: data => {
+        if (data.status === 'success') {
+          console.log('Response sent successfully');
+        } else {
+          console.log('Error sending response');
+        }
+      },
+
+      error: () => {
+        console.log('Error en el servidor');
+      },
+
+      complete: () => {
+        this.stepperService.currentStep = 0;
+      }
+    })
   }
 }

@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { HttpResponse } from '../../model/http-response';
-import { ResponseSurvey } from '../../model/response';
 import { QuestionEntity, Survey } from '../../model/survey';
 import { ToastService } from '../utils/toast/toast.service';
 
@@ -17,6 +16,7 @@ export class DataService {
   constructor(private http: HttpClient, private toastService: ToastService) {
   }
 
+  // TODO: Get all surveys from the API || This would be separated in a different service implementation #TODO
   public async getSurveys(): Promise<Survey[]> {
     const surveysFromAPI = await lastValueFrom(this.http.get<HttpResponse<Survey>>(`${this.host}/surveys`, {
       responseType: 'json'
@@ -33,6 +33,7 @@ export class DataService {
     return surveysFromAPI as Survey[];
   }
 
+  // TODO: Get all questions from a specific survey || This would be separated in a different service implementation #TODO
   public getSurveyQuestions(surveyId: string): Promise<QuestionEntity[]> {
     return lastValueFrom(this.http.get<HttpResponse<QuestionEntity>>(`${this.host}/surveys/${surveyId}/questions`, {
       responseType: 'json'
@@ -47,23 +48,5 @@ export class DataService {
     })
   }
 
-  public postSurveyResponse(response: ResponseSurvey) {
-    return this.http.post<HttpResponse<unknown>>(`${this.host}/responses`, response, {
-      responseType: 'json',
-    }).subscribe({
-      next: data => {
-        if (data.status === 'success') {
-          this.toastService.addToastMessage('success', 'Respuesta enviada!', 'Respueta enviada correctamente, gracias por participar');
-        } else {
-          this.toastService.addToastMessage('error', 'Error al enviar respuesta', 'Ocurrió un error al enviar la respuesta, por favor intenta de nuevo');
-        }
-        this.toastService.showToasts();
-      },
-      error: e => {
-        console.log(e);
-        this.toastService.addToastMessage('error', 'Error al enviar respuesta', 'Ocurrió un error al enviar la respuesta, por favor intenta de nuevo');
-        this.toastService.showToasts();
-      }
-    })
-  }
+
 }
