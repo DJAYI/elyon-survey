@@ -1,9 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
-import { HttpResponse } from '../../model/http-response';
 import { QuestionEntity, Survey } from '../../model/survey';
-import { ToastService } from '../utils/toast/toast.service';
+import { SurveyQueryService } from './surveys/query/survey-query.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,38 +11,40 @@ export class DataService {
   recoveredSurveys: Survey[] = [];
   recoveredQuestions: QuestionEntity[] = [];
 
-  constructor(private http: HttpClient, private toastService: ToastService) {
+  constructor(private http: HttpClient, private surveyQueryService: SurveyQueryService) {
   }
 
-  // TODO: Get all surveys from the API || This would be separated in a different service implementation #TODO
-  public async getSurveys(): Promise<Survey[]> {
-    const surveysFromAPI = await lastValueFrom(this.http.get<HttpResponse<Survey>>(`${this.host}/surveys`, {
-      responseType: 'json'
-    })).then(data => {
-      if (data.status === 'success') {
-        this.recoveredSurveys = data.data! as Survey[];
-        return this.recoveredSurveys;
-      }
+  public getSurveys() {
+    this.surveyQueryService.getSurveys().subscribe({
+      next: data => {
+        if (data.status === 'success') {
+          this.recoveredSurveys = data.data as Survey[];
+          console.log(this.recoveredSurveys);
+        } else {
+          console.log(data.message);
+        }
+      },
 
-      console.log(data.message);
-      return null;
+      error: () => {
+        console.log('Error getting surveys');
+      }
     })
-
-    return surveysFromAPI as Survey[];
   }
 
-  // TODO: Get all questions from a specific survey || This would be separated in a different service implementation #TODO
-  public getSurveyQuestions(surveyId: string): Promise<QuestionEntity[]> {
-    return lastValueFrom(this.http.get<HttpResponse<QuestionEntity>>(`${this.host}/surveys/${surveyId}/questions`, {
-      responseType: 'json'
-    })).then(data => {
-      if (data.status === 'success') {
-        this.recoveredQuestions = data.data as QuestionEntity[];
-        return this.recoveredQuestions;
-      }
+  public getSurveyQuestions(surveyId: string) {
+    this.surveyQueryService.getSurveyQuestions(surveyId).subscribe({
+      next: data => {
+        if (data.status === 'success') {
+          this.recoveredQuestions = data.data as QuestionEntity[];
+          console.log(this.recoveredQuestions);
+        } else {
+          console.log(data.message);
+        }
+      },
 
-      console.log(data.message);
-      return [];
+      error: () => {
+        console.log('Error getting questions');
+      }
     })
   }
 
