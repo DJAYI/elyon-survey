@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Survey } from '../../../model/survey';
-import { SurveyQueryImplService } from '../../../services/data/surveys/query/implementation/survey-query-impl.service';
+import { SurveyQueryDataService } from '../../../services/data/surveys/query/implementation/survey-query-data.service';
 import { ResponseService } from '../../../services/data/surveys/response/response.service';
 import { StepperService } from '../../../services/stepper/stepper.service';
 
@@ -16,12 +16,12 @@ export class StepTwoComponent implements OnInit {
   constructor(
     private responseService: ResponseService,
     private stepperService: StepperService,
-    private surveyQueryImplService: SurveyQueryImplService,
+    private surveyQueryDataService: SurveyQueryDataService,
   ) {
   }
 
   async ngOnInit() {
-    this.surveys = this.surveyQueryImplService.recoveredSurveys;
+    this.surveys = this.surveyQueryDataService.recoveredSurveys;
   }
 
   handleNextStep() {
@@ -34,6 +34,6 @@ export class StepTwoComponent implements OnInit {
 
   handleSelectSurvey(surveyId?: string) {
     this.responseService.responseSurvey.surveyId = surveyId;
-    this.surveyQueryImplService.getSurveyQuestions(surveyId!);
+    this.surveyQueryDataService.getSurveyQuestions(surveyId!);
   }
 }

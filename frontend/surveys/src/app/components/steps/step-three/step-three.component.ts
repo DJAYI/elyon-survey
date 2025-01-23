@@ -2,7 +2,7 @@ import { Component, input, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { QuestionEntity } from '../../../model/survey';
 import { Response } from '../../../model/survey-response';
-import { SurveyQueryImplService } from '../../../services/data/surveys/query/implementation/survey-query-impl.service';
+import { SurveyQueryDataService } from '../../../services/data/surveys/query/implementation/survey-query-data.service';
 import { ResponseService } from '../../../services/data/surveys/response/response.service';
 import { StepperService } from '../../../services/stepper/stepper.service';
 
@@ -19,7 +19,7 @@ export class StepThreeComponent implements OnInit {
   questions?: QuestionEntity[];
 
   constructor(
-    public surveyQueryImpl: SurveyQueryImplService,
+    public surveyQueryData: SurveyQueryDataService,
     public stepperService: StepperService,
     public responseService: ResponseService,
   ) {
@@ -31,7 +31,7 @@ export class StepThreeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.questions = this.surveyQueryImpl.recoveredQuestions;
+    this.questions = this.surveyQueryData.recoveredQuestions;
   }
 
   handleSubmit() {

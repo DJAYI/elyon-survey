@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { SurveyQueryImplService } from '../../services/data/surveys/query/implementation/survey-query-impl.service';
+import { SurveyQueryDataService } from '../../services/data/surveys/query/implementation/survey-query-data.service';
 import { ResponseService } from '../../services/data/surveys/response/response.service';
 import { StepperService } from '../../services/stepper/stepper.service';
 import { ToastService } from '../../services/utils/toast/toast.service';
@@ -20,7 +20,7 @@ export class StepperComponent {
   constructor(
     public responseService: ResponseService,
     public stepperService: StepperService,
-    public surveyQueryImpl: SurveyQueryImplService,
+    public surveyQueryData: SurveyQueryDataService,
     public toastService: ToastService,
   ) {
   }
@@ -38,19 +38,11 @@ export class StepperComponent {
     this.stepperService.currentStep = 0;
   }
 
-  isDisabled(): boolean {
-    // Obtén la longitud de las preguntas recuperadas
-    const recoveredQuestionsLength = this.surveyQueryImpl.recoveredQuestions.length;
+  isSubmitDisabled(): boolean {
+    const { recoveredQuestions } = this.surveyQueryData;
+    const { responses } = this.responseService.responseSurvey;
 
-    // Obtén la longitud de las respuestas, o 0 si no existen
-    const responsesLength = this.responseService.responseSurvey.responses?.length || 0;
-
-    // Validaciones individuales
-    const hasMoreRecoveredQuestions = recoveredQuestionsLength > responsesLength;
-    const hasNoResponses = responsesLength <= 0;
-
-    // Combina las validaciones
-    return hasMoreRecoveredQuestions && hasNoResponses;
+    return recoveredQuestions.length > (responses?.length || 0) && (responses?.length || 0) <= 0;
   }
 
 }

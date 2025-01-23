@@ -15,7 +15,7 @@
         <p class="text-xs italic text-red-500">Este campo es requerido</p>
       }
 
-      @if (firstname.hasError("maxLength")) {
+      @if (firstname.hasError("maxlength")) {
         <p class="text-xs italic text-red-500">Este campo no puede tener más de 50 caracteres</p>
       }
 
@@ -33,7 +33,7 @@
         <p class="text-xs italic text-red-500">Este campo es requerido</p>
       }
 
-      @if (lastname.hasError("maxLength")) {
+      @if (lastname.hasError("maxlength")) {
         <p class="text-xs italic text-red-500">Este campo no puede tener más de 50 caracteres</p>
       }
 
@@ -65,11 +65,11 @@
         <p class="text-xs italic text-red-500">Este campo es requerido</p>
       }
 
-      @if (documentNumber.hasError("maxLength")) {
+      @if (documentNumber.hasError("maxlength") && (documentNumber.dirty || documentNumber.touched)) {
         <p class="text-xs italic text-red-500">Este campo no puede tener más de 20 caracteres</p>
       }
 
-      @if (documentNumber.hasError("maxLength")) {
+      @if (documentNumber.hasError("minlength") && (documentNumber.dirty || documentNumber.touched)) {
         <p class="text-xs italic text-red-500">Este campo no puede tener menos de 10 caracteres</p>
       }
 
@@ -99,12 +99,12 @@
         <p class="text-xs italic text-red-500">Este campo es requerido</p>
       }
 
-      @if (phone.hasError("maxLength")) {
-        <p class="text-xs italic text-red-500">Este campo no puede tener más de 20 caracteres ni menos de 7 caracteres</p>
+      @if (phone.hasError("maxlength")) {
+        <p class="text-xs italic text-red-500">Este campo no puede tener más de 20 caracteres</p>
       }
 
       @if (phone.hasError("minlength")) {
-        <p class="text-xs italic text-red-500">Este campo no puede tener más de 20 caracteres ni menos de 7 caracteres</p>
+        <p class="text-xs italic text-red-500">Este campo no puede tener menos de 7 caracteres</p>
       }
 
       @if (phone.hasError("pattern")) {
