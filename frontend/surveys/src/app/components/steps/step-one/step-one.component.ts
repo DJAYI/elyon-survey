@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Respondent } from '../../../model/response';
+import { Respondent } from '../../../model/survey-response';
+import { ResponseService } from '../../../services/data/surveys/response/response.service';
 import { StepperService } from '../../../services/stepper/stepper.service';
 
 @Component({
@@ -30,7 +31,7 @@ export class StepOneComponent {
   student: FormControl;
 
 
-  constructor(public stepperService: StepperService) {
+  constructor(public responseService: ResponseService, public stepperService: StepperService) {
     this.firstname = new FormControl(this.respondentData.firstname, [
       Validators.required,
       Validators.maxLength(50),
@@ -81,9 +82,9 @@ export class StepOneComponent {
       return;
     }
 
-    this.stepperService.respondent.firstname = this.firstname.value;
+    this.responseService.respondent.firstname = this.firstname.value;
 
-    Object.assign(this.stepperService.respondent, this.respondentForm.value);
+    Object.assign(this.responseService.respondent, this.respondentForm.value);
 
     this.stepperService.handleNextStep();
   }

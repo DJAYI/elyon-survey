@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { DataService } from '../../services/data/data.service';
+import { ResponseService } from '../../services/data/surveys/response/response.service';
 import { StepperService } from '../../services/stepper/stepper.service';
 import { ToastService } from '../../services/utils/toast/toast.service';
 import { StepOneComponent } from '../steps/step-one/step-one.component';
@@ -17,6 +18,7 @@ export class StepperComponent {
   router: Router = inject(Router);
 
   constructor(
+    public responseService: ResponseService,
     public stepperService: StepperService,
     public dataService: DataService,
     public toastService: ToastService,
@@ -32,7 +34,7 @@ export class StepperComponent {
   }
 
   handleSubmitResponse() {
-    this.stepperService.handleSubmitResponse();
+    this.responseService.handleSubmitResponse();
     this.stepperService.currentStep = 0;
   }
 
@@ -41,7 +43,7 @@ export class StepperComponent {
     const recoveredQuestionsLength = this.dataService.recoveredQuestions.length;
 
     // Obtén la longitud de las respuestas, o 0 si no existen
-    const responsesLength = this.stepperService.responseSurvey.responses?.length || 0;
+    const responsesLength = this.responseService.responseSurvey.responses?.length || 0;
 
     // Validaciones individuales
     const hasMoreRecoveredQuestions = recoveredQuestionsLength > responsesLength;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Survey } from '../../../model/survey';
 import { DataService } from '../../../services/data/data.service';
+import { ResponseService } from '../../../services/data/surveys/response/response.service';
 import { StepperService } from '../../../services/stepper/stepper.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class StepTwoComponent implements OnInit {
   surveys: Survey[] = [];
 
   constructor(
+    public responseService: ResponseService,
     public stepperService: StepperService,
     public dataService: DataService
   ) {
@@ -31,6 +33,6 @@ export class StepTwoComponent implements OnInit {
   }
 
   handleSelectSurvey(surveyId?: string) {
-    this.stepperService.responseSurvey.surveyId = surveyId;
+    this.responseService.responseSurvey.surveyId = surveyId;
   }
 }

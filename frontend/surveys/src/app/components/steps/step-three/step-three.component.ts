@@ -1,8 +1,9 @@
 import { Component, input, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Response } from '../../../model/response';
 import { QuestionEntity } from '../../../model/survey';
+import { Response } from '../../../model/survey-response';
 import { DataService } from '../../../services/data/data.service';
+import { ResponseService } from '../../../services/data/surveys/response/response.service';
 import { StepperService } from '../../../services/stepper/stepper.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class StepThreeComponent implements OnInit {
 
   constructor(
     public dataService: DataService,
-    public stepperService: StepperService
+    public stepperService: StepperService,
+    public responseService: ResponseService,
   ) {
     this.response = {
       questionId: 0,
@@ -33,7 +35,7 @@ export class StepThreeComponent implements OnInit {
   }
 
   handleSubmit() {
-    this.stepperService.handleSubmitResponse();
+    this.responseService.handleSubmitResponse();
   }
 
   handlePreviousStep() {
@@ -45,6 +47,6 @@ export class StepThreeComponent implements OnInit {
     this.response.questionId = questionId;
 
 
-    this.stepperService.addResponse(this.response);
+    this.responseService.addResponse(this.response);
   }
 }
