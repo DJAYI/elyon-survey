@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Respondent, Response, ResponseSurvey } from '../../../../model/survey-response';
 import { StepperService } from '../../../stepper/stepper.service';
-import { ResponseQueryService } from './response-query.service';
+import { NotifyService } from '../../../utils/notification/notify.service';
+import { ResponseQueryDataService } from './response-query-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,11 @@ export class ResponseService {
   response: Map<number, number>;
   responseSurvey: ResponseSurvey;
 
-  constructor(private responseQueryService: ResponseQueryService, private stepperService: StepperService) {
+  constructor(
+    private responseQueryService: ResponseQueryDataService,
+    private stepperService: StepperService,
+    private notifyService: NotifyService
+  ) {
     this.respondent = {
       firstname: '',
       lastname: '',
@@ -48,17 +53,17 @@ export class ResponseService {
   }
 
   handleSubmitResponse() {
-    this.responseQueryService.postSurveyResponse(this.responseSurvey).subscribe({
+    this.responseQueryService.sendSurveyResponse(this.responseSurvey).subscribe({
       next: data => {
         if (data.status === 'success') {
-          console.log('Response sent successfully');
+          this.notifyService.showSuccess('Response sent', 'The response has been sent successfully');
         } else {
-          console.log('Error sending response');
+          this.notifyService.showError('Error', 'An error occurred while trying to send the response');
         }
       },
 
       error: () => {
-        console.log('Error en el servidor');
+        this.notifyService.showError('Error', 'An error occurred while trying to send the response');
       },
 
       complete: () => {

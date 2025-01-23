@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ResponseQueryService } from './response-query.service';
+import { NotifyService } from './notify.service';
 
-describe('ResponseQueryService', () => {
-  let service: ResponseQueryService;
+describe('NotifyService', () => {
+  let service: NotifyService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ResponseQueryService);
+    service = TestBed.inject(NotifyService);
   });
 
   it('should be created', () => {

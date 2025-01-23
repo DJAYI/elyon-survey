@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { QuestionEntity, Survey } from '../../../../../model/survey';
+import { NotifyService } from '../../../../utils/notification/notify.service';
 import { SurveyQueryApiService } from '../survey-query-api.service';
 
 @Injectable({
@@ -11,39 +12,44 @@ export class SurveyQueryDataService {
   recoveredSurveys: Survey[] = [];
   recoveredQuestions: QuestionEntity[] = [];
 
-  constructor(private http: HttpClient, private surveyQueryApiService: SurveyQueryApiService) {
+  constructor(
+    private http: HttpClient,
+    private surveyQueryApiService: SurveyQueryApiService,
+    private notifyService: NotifyService
+  ) {
     this.getSurveys();
   }
 
   public getSurveys() {
     this.surveyQueryApiService.getSurveys().subscribe({
-      next: data => {
-        if (data.status === 'success') {
-          this.recoveredSurveys = data.data as Survey[];
-          console.log(data.message);
+      next: response => {
+        if (response.status === 'success') {
+          this.recoveredSurveys = response.data as Survey[];
+          this.notifyService.showSuccess('Surveys recovered', 'Surveys have been recovered successfully');
         } else {
-          console.log(data.message);
+          this.notifyService.showError('Error recovering surveys', response.message);
         }
       },
 
       error: () => {
-        console.log('Error getting surveys');
+        this.notifyService.showError('Error recovering surveys', 'An error occurred while trying to recover the surveys');
       }
     })
   }
 
   public getSurveyQuestions(surveyId: string) {
     this.surveyQueryApiService.getSurveyQuestions(surveyId).subscribe({
-      next: data => {
-        if (data.status === 'success') {
-          this.recoveredQuestions = data.data as QuestionEntity[];
+      next: response => {
+        if (response.status === 'success') {
+          this.recoveredQuestions = response.data as QuestionEntity[];
+          this.notifyService.showSuccess('Questions recovered', 'Questions have been recovered successfully');
         } else {
-          console.log(data.message);
+          this.notifyService.showError('Error recovering questions', response.message);
         }
       },
 
       error: () => {
-        console.log('Error getting questions');
+        this.notifyService.showError('Error recovering questions', 'An error occurred while trying to recover the questions');
       }
     })
   }
