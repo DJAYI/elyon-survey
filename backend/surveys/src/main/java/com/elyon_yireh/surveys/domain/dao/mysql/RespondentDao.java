@@ -1,4 +1,4 @@
-package com.elyon_yireh.surveys.domain.dao;
+package com.elyon_yireh.surveys.domain.dao.mysql;
 
 import com.elyon_yireh.surveys.domain.entities.RespondentEntity;
 import org.springframework.data.repository.CrudRepository;

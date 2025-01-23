@@ -1,6 +1,6 @@
 package com.elyon_yireh.surveys;
 
-import com.elyon_yireh.surveys.domain.dao.DepartmentDao;
+import com.elyon_yireh.surveys.domain.dao.mysql.DepartmentDao;
 import com.elyon_yireh.surveys.domain.entities.DepartmentEntity;
 import com.elyon_yireh.surveys.security.entities.PermissionEntity;
 import com.elyon_yireh.surveys.security.entities.RoleEntity;
