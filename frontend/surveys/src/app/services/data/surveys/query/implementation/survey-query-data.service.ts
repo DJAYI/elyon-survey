@@ -1,22 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { QuestionEntity, Survey } from '../../../../../model/survey';
-import { SurveyQueryService } from '../survey-query.service';
+import { SurveyQueryApiService } from '../survey-query-api.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SurveyQueryImplService {
+export class SurveyQueryDataService {
 
   recoveredSurveys: Survey[] = [];
   recoveredQuestions: QuestionEntity[] = [];
 
-  constructor(private http: HttpClient, private surveyQueryService: SurveyQueryService) {
+  constructor(private http: HttpClient, private surveyQueryApiService: SurveyQueryApiService) {
     this.getSurveys();
   }
 
   public getSurveys() {
-    this.surveyQueryService.getSurveys().subscribe({
+    this.surveyQueryApiService.getSurveys().subscribe({
       next: data => {
         if (data.status === 'success') {
           this.recoveredSurveys = data.data as Survey[];
@@ -33,7 +33,7 @@ export class SurveyQueryImplService {
   }
 
   public getSurveyQuestions(surveyId: string) {
-    this.surveyQueryService.getSurveyQuestions(surveyId).subscribe({
+    this.surveyQueryApiService.getSurveyQuestions(surveyId).subscribe({
       next: data => {
         if (data.status === 'success') {
           this.recoveredQuestions = data.data as QuestionEntity[];

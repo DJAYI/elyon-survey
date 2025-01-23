@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SurveyQueryService } from './survey-query.service';
+import { SurveyQueryApiService } from './survey-query-api.service';
 
 describe('SurveyQueryService', () => {
-  let service: SurveyQueryService;
+  let service: SurveyQueryApiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SurveyQueryService);
+    service = TestBed.inject(SurveyQueryApiService);
   });
 
   it('should be created', () => {
