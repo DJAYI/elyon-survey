@@ -1,6 +1,6 @@
 package com.elyon_yireh.surveys.service.implementations.department;
 
-import com.elyon_yireh.surveys.domain.dao.DepartmentDao;
+import com.elyon_yireh.surveys.domain.dao.mysql.DepartmentDao;
 import com.elyon_yireh.surveys.domain.dto.HttpResponseDto;
 import com.elyon_yireh.surveys.domain.dto.HttpResponseListDto;
 import com.elyon_yireh.surveys.domain.entities.DepartmentEntity;

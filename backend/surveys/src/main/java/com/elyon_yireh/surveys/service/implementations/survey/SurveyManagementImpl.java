@@ -1,7 +1,7 @@
 package com.elyon_yireh.surveys.service.implementations.survey;
 
-import com.elyon_yireh.surveys.domain.dao.DepartmentDao;
-import com.elyon_yireh.surveys.domain.dao.SurveyDao;
+import com.elyon_yireh.surveys.domain.dao.mysql.DepartmentDao;
+import com.elyon_yireh.surveys.domain.dao.mysql.SurveyDao;
 import com.elyon_yireh.surveys.domain.dto.HttpResponseDto;
 import com.elyon_yireh.surveys.domain.dto.request.SaveSurveyDto;
 import com.elyon_yireh.surveys.domain.entities.DepartmentEntity;

@@ -1,7 +1,7 @@
 package com.elyon_yireh.surveys.service.implementations.answer;
 
-import com.elyon_yireh.surveys.domain.dao.QuestionDao;
-import com.elyon_yireh.surveys.domain.dao.SurveyDao;
+import com.elyon_yireh.surveys.domain.dao.mysql.QuestionDao;
+import com.elyon_yireh.surveys.domain.dao.mysql.SurveyDao;
 import com.elyon_yireh.surveys.domain.dto.HttpResponseDto;
 import com.elyon_yireh.surveys.domain.dto.HttpResponseListDto;
 import com.elyon_yireh.surveys.domain.entities.AnswerEntity;
