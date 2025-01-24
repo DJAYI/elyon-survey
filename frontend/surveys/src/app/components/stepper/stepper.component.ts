@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { ResponseService } from '../../services/data/response/response.service';
 import { SurveyQueryDataService } from '../../services/data/surveys/query/implementation/survey-query-data.service';
-import { ResponseService } from '../../services/data/surveys/response/response.service';
 import { StepperService } from '../../services/stepper/stepper.service';
 import { ToastService } from '../../services/utils/toast/toast.service';
 import { StepOneComponent } from '../steps/step-one/step-one.component';

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Survey } from '../../../model/survey';
+import { ResponseService } from '../../../services/data/response/response.service';
 import { SurveyQueryDataService } from '../../../services/data/surveys/query/implementation/survey-query-data.service';
-import { ResponseService } from '../../../services/data/surveys/response/response.service';
 import { StepperService } from '../../../services/stepper/stepper.service';
 
 @Component({
