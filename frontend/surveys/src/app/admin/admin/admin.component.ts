@@ -15,18 +15,10 @@ export class AdminComponent implements OnInit {
     router = inject(Router);
 
     constructor(public authService: AuthenticationService) {
-        this.authService.checkAuthenticated().then(session => this.session = session);
     }
 
     async ngOnInit(): Promise<void> {
-        const sessionChecker = setInterval(async () => {
-            this.session = await this.authService.checkAuthenticated();
-            if (!this.session) {
-                clearInterval(sessionChecker);
-
-                this.router.navigate(['/auth']);
-            }
-        }, 10000);
+        this.authService.startAuthIntervalVerifier();
     }
 
 }
