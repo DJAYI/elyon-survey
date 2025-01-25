@@ -34,7 +34,7 @@ export class StepperComponent {
   }
 
   handleSubmitResponse() {
-    this.responseService.handleSubmitResponse();
+    this.responseService.handleSendResponse();
     this.stepperService.currentStep = 0;
   }
 
