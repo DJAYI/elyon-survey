@@ -52,7 +52,7 @@ export class ResponseService {
     });
   }
 
-  handleSubmitResponse() {
+  handleSendResponse() {
     this.responseQueryService.sendSurveyResponse(this.responseSurvey).subscribe({
       next: data => {
         if (data.status === 'success') {
