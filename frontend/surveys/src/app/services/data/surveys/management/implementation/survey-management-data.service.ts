@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Survey } from '../../../../../model/survey';
+import { NotifyService } from '../../../../utils/notification/notify.service';
 import { SurveyManagementService } from '../survey-management.service';
 
 @Injectable({
@@ -7,20 +8,20 @@ import { SurveyManagementService } from '../survey-management.service';
 })
 export class SurveyManagementDataService {
 
-  constructor(private surveyManagementService: SurveyManagementService) { }
+  constructor(private surveyManagementService: SurveyManagementService, private notifyService: NotifyService) { }
 
   public createSurvey(survey: Survey) {
     this.surveyManagementService.createSurvey(survey).subscribe({
       next: (response) => {
         if (response.status === 'success') {
-          console.log('Survey created successfully');
+          this.notifyService.showSuccess('Encuesta creada', 'La encuesta ha sido creada exitosamente');
         } else {
-          console.error('Failed to create survey');
+          this.notifyService.showError('Error al crear la encuesta', response.message);
         }
       },
 
       error: () => {
-        console.error('Failed to create survey');
+        this.notifyService.showError('Error al crear la encuesta', 'Ocurrió un error al intentar crear la encuesta, por favor intente nuevamente');
       }
     })
   }
@@ -29,14 +30,14 @@ export class SurveyManagementDataService {
     this.surveyManagementService.updateSurvey(survey).subscribe({
       next: (response) => {
         if (response.status === 'success') {
-          console.log('Survey updated successfully');
+          this.notifyService.showSuccess('Encuesta actualizada', 'La encuesta ha sido actualizada exitosamente');
         } else {
-          console.error('Failed to update survey');
+          this.notifyService.showError('Error al actualizar la encuesta', response.message);
         }
       },
 
       error: () => {
-        console.error('Failed to update survey');
+        this.notifyService.showError('Error al actualizar la encuesta', 'Ocurrió un error al intentar actualizar la encuesta, por favor intente nuevamente');
       }
     })
   }
@@ -45,14 +46,14 @@ export class SurveyManagementDataService {
     this.surveyManagementService.deleteSurvey(surveyId).subscribe({
       next: (response) => {
         if (response.status === 'success') {
-          console.log('Survey deleted successfully');
+          this.notifyService.showSuccess('Encuesta eliminada', 'La encuesta ha sido eliminada exitosamente');
         } else {
-          console.error('Failed to delete survey');
+          this.notifyService.showError('Error al eliminar la encuesta', response.message);
         }
       },
 
       error: () => {
-        console.error('Failed to delete survey');
+        this.notifyService.showError('Error al eliminar la encuesta', 'Ocurrió un error al intentar eliminar la encuesta, por favor intente nuevamente');
       }
     })
   }
