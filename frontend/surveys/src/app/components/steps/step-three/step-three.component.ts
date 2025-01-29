@@ -2,8 +2,8 @@ import { Component, input, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { QuestionEntity } from '../../../model/survey';
 import { Response } from '../../../model/survey-response';
+import { ResponseService } from '../../../services/data/response/response.service';
 import { SurveyQueryDataService } from '../../../services/data/surveys/query/implementation/survey-query-data.service';
-import { ResponseService } from '../../../services/data/surveys/response/response.service';
 import { StepperService } from '../../../services/stepper/stepper.service';
 
 @Component({
