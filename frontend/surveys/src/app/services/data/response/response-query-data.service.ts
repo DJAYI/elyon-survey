@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpResponse } from '../../../../model/http-response';
-import { ResponseSurvey } from '../../../../model/survey-response';
+import { HttpResponse } from '../../../model/http-response';
+import { ResponseSurvey } from '../../../model/survey-response';
 
 @Injectable({
   providedIn: 'root'
