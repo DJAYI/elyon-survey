@@ -1,67 +1,82 @@
-<div class="absolute top-0 left-0 flex flex-row max-w-sm sm:relative w-72 h-dvh">
+<div class="fixed bottom-0 left-0 z-10 flex h-full sm:relative sm:w-max sm:max-w-80">
 
-<nav [ngClass]="{'hide-nav': toggleMenu}" class="w-64 h-full p-4 text-white transition bg-gray-800">
-  <ul class="flex flex-col h-full gap-4">
-    <li class="w-full">
-      <a [ngClass]="{'bg-gradient-to-tr from-green-400 to-cyan-500 text-blue-950 font-semibold': isTabActive(0), 'hover:bg-gray-700': !isTabActive(0)}" class="block w-full px-4 py-2 transition rounded-lg cursor-pointer" (click)="handleCurrentTab(0)" [routerLink]="['./']" (keydown.enter)="handleCurrentTab(0)" tabindex="0">
-        Inicio
-      </a>
-    </li>
-    <li class="w-full">
-      <a [ngClass]="{'bg-gradient-to-tr from-green-400 to-cyan-500 text-blue-950 font-semibold': isTabActive(1), 'hover:bg-gray-700': !isTabActive(1)}" class="block w-full px-4 py-2 transition rounded-lg cursor-pointer" (click)="handleCurrentTab(1)" [routerLink]="['analytics']" (keydown.enter)="handleCurrentTab(1)" tabindex="0">
-        Auditoría de Respuestas
-      </a>
-    </li>
-    <li class="w-full">
-      <a [ngClass]="{'bg-gradient-to-tr from-green-400 to-cyan-500 text-blue-950 font-semibold': isTabActive(2), 'hover:bg-gray-700': !isTabActive(2)}" class="block w-full px-4 py-2 transition rounded-lg cursor-pointer" (click)="handleCurrentTab(2)" [routerLink]="['surveys']" (keydown.enter)="handleCurrentTab(2)" tabindex="0">
-        Gestión de Encuestas
-      </a>
-    </li>
-    <li class="w-full">
-      <a [ngClass]="{'bg-gradient-to-tr from-green-400 to-cyan-500 text-blue-950 font-semibold': isTabActive(3), 'hover:bg-gray-700': !isTabActive(3)}" class="block w-full px-4 py-2 transition rounded-lg cursor-pointer" (click)="handleCurrentTab(3)" [routerLink]="['users']" (keydown.enter)="handleCurrentTab(3)" tabindex="0">
-        Gestión de Usuarios
-      </a>
-    </li>
-    <li class="w-full mt-auto">
-      <button class="block w-full px-4 py-2 text-red-500 transition border border-red-400 rounded-lg cursor-pointer hover:text-white hover:bg-red-500" (click)="logout()">
-        Cerrar Sesión
-      </button>
-    </li>
-  </ul>
-</nav>
+  <nav [ngClass]="{'hide-nav': toggleMenu}"
+    class="flex flex-col items-stretch w-full h-full p-4 text-white transition bg-gray-800">
+    <ul class="flex flex-col w-full h-full gap-2">
+      <li class="w-full">
+        <a [ngClass]="{'bg-gradient-to-tr from-green-400 to-cyan-500 text-blue-950 font-semibold': isTabActive(0), 'hover:bg-gray-700': !isTabActive(0)}"
+          class="block w-full px-4 py-2 transition rounded-lg cursor-pointer" (click)="handleCurrentTab(0)"
+          [routerLink]="['./']" (keydown.enter)="handleCurrentTab(0)" tabindex="0">
+          Inicio
+        </a>
+      </li>
+      <li class="w-full">
+        <a [ngClass]="{'bg-gradient-to-tr from-green-400 to-cyan-500 text-blue-950 font-semibold': isTabActive(1), 'hover:bg-gray-700': !isTabActive(1)}"
+          class="block w-full px-4 py-2 transition rounded-lg cursor-pointer" (click)="handleCurrentTab(1)"
+          [routerLink]="['analytics']" (keydown.enter)="handleCurrentTab(1)" tabindex="0">
+          Auditoría de Respuestas
+        </a>
+      </li>
+      <li class="w-full">
+        <a [ngClass]="{'bg-gradient-to-tr from-green-400 to-cyan-500 text-blue-950 font-semibold': isTabActive(2), 'hover:bg-gray-700': !isTabActive(2)}"
+          class="block w-full px-4 py-2 transition rounded-lg cursor-pointer" (click)="handleCurrentTab(2)"
+          [routerLink]="['surveys']" (keydown.enter)="handleCurrentTab(2)" tabindex="0">
+          Gestión de Encuestas
+        </a>
+      </li>
+      <li class="w-full">
+        <a [ngClass]="{'bg-gradient-to-tr from-green-400 to-cyan-500 text-blue-950 font-semibold': isTabActive(3), 'hover:bg-gray-700': !isTabActive(3)}"
+          class="block w-full px-4 py-2 transition rounded-lg cursor-pointer" (click)="handleCurrentTab(3)"
+          [routerLink]="['users']" (keydown.enter)="handleCurrentTab(3)" tabindex="0">
+          Gestión de Usuarios
+        </a>
+      </li>
+      <li class="w-full mt-auto">
+        <button
+          class="block w-full px-4 py-2 text-red-500 transition border border-red-400 rounded-lg cursor-pointer hover:text-white hover:bg-red-500"
+          (click)="logout()">
+          Cerrar Sesión
+        </button>
+      </li>
+    </ul>
+  </nav>
 
-<button (click)="toggleSidebar()" class="self-start px-3 py-2 mt-2 transition bg-white border-2 border-blue-500 shadow-md rounded-e-lg w-fit hover:bg-blue-500 stroke-black fill-none hover:stroke-white">
-    
+  <button (click)="toggleSidebar()"
+    class="self-start px-3 py-2 mt-2 transition bg-white border-2 border-blue-500 shadow-md rounded-e-lg w-fit hover:bg-blue-500 stroke-black fill-none hover:stroke-white">
+
     <!-- <ng-container *ngIf="!toggleMenu; else elseBlock"> -->
-    
+
     @if (!toggleMenu) {
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-bar-to-left">
-        <path stroke="none" d="M0 0h24v24H0z" />
-        <path d="M10 12l10 0" />
-        <path d="M10 12l4 4" />
-        <path d="M10 12l4 -4" />
-        <path d="M4 4l0 16" />
-      </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round"
+      class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-bar-to-left">
+      <path stroke="none" d="M0 0h24v24H0z" />
+      <path d="M10 12l10 0" />
+      <path d="M10 12l4 4" />
+      <path d="M10 12l4 -4" />
+      <path d="M4 4l0 16" />
+    </svg>
     } @else {
 
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-bar-to-right">
-        <path stroke="none" d="M0 0h24v24H0z" />
-        <path d="M14 12l-10 0" />
-        <path d="M14 12l-4 4" />
-        <path d="M14 12l-4 -4" />
-        <path d="M20 4l0 16" />
-      </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round"
+      class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-bar-to-right">
+      <path stroke="none" d="M0 0h24v24H0z" />
+      <path d="M14 12l-10 0" />
+      <path d="M14 12l-4 4" />
+      <path d="M14 12l-4 -4" />
+      <path d="M20 4l0 16" />
+    </svg>
     }
-      
+
   </button>
 </div>
 
 <style>
-
   nav {
     transform: translateX(0%);
     transition: transform 0.3s ease-in-out;
-    
+
     @starting-style {
       transform: translateX(-100%);
     }
