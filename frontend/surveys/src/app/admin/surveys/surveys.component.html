@@ -2,9 +2,57 @@
   class="relative flex flex-col items-center justify-start w-full h-full gap-4 px-4 pt-8 lg:items-start lg:justify-between lg:flex-row">
 
   <div class="w-full h-full">
-    <app-survey-table></app-survey-table>
+    <div class="flex flex-col items-center w-full gap-4 p-3 mt-8 lg:mt-0">
+      <div class="flex flex-col justify-between w-full pb-4 border-b gap-y-4 sm:flex-row">
+        <h3 class="text-2xl font-semibold">
+          Encuestas
+        </h3>
+        <div class="flex flex-row gap-4">
+          <button
+            class="flex items-center justify-between gap-3 px-4 py-2 text-sm text-white bg-black rounded-md disabled:opacity-20 w-fit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-adjustments-horizontal">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M14 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+              <path d="M4 6l8 0" />
+              <path d="M16 6l4 0" />
+              <path d="M8 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+              <path d="M4 12l2 0" />
+              <path d="M10 12l10 0" />
+              <path d="M17 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+              <path d="M4 18l11 0" />
+              <path d="M19 18l1 0" />
+            </svg> <span class="block font-semibold w-fit">Filtrar</span>
+          </button>
+          <button (click)="handleCreateSurvey()"
+            class="flex items-center justify-between gap-3 px-4 py-2 text-sm text-white bg-black rounded-md disabled:opacity-20 w-fit">
+            @if (!showTabEngine) {
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+              class="icon icon-tabler size-4 icons-tabler-outline icon-tabler-plus">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M12 5l0 14" />
+              <path d="M5 12l14 0" />
+            </svg> <span class="block font-semibold w-fit">Crear</span>
+            }@else {
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+              class="icon icon-tabler size-4 icons-tabler-outline icon-tabler-arrow-left">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <line x1="5" y1="12" x2="11" y2="18" />
+              <line x1="5" y1="12" x2="11" y2="6" />
+            </svg> <span class="block font-semibold w-fit">Volver</span>
+            }
+          </button>
+        </div>
+      </div>
+      <app-survey-table></app-survey-table>
+    </div>
   </div>
-  <div class="w-full h-full">
+
+  <div [ngClass]="{'hidden': !showTabEngine}" class="w-full h-full">
     <app-survey-tab-engine></app-survey-tab-engine>
   </div>
 </div>

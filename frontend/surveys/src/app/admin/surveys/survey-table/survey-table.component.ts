@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { DepartmentEntity, Survey } from '../../../model/survey';
+import { SurveyManagementService } from '../../../services/data/surveys/management/survey-management.service';
 import { SurveyQueryApiService } from '../../../services/data/surveys/query/survey-query-api.service';
 import { NotifyService } from '../../../services/utils/notification/notify.service';
 
@@ -15,9 +16,25 @@ export class SurveyTableComponent implements OnInit {
   public surveys: Survey[];
   public departmentEntities: DepartmentEntity[];
 
-  constructor(private surveyQuery: SurveyQueryApiService, private notifyService: NotifyService) {
+  constructor(private surveyQuery: SurveyQueryApiService, private surveyManagementService: SurveyManagementService, private notifyService: NotifyService) {
     this.departmentEntities = [];
     this.surveys = [];
+  }
+  handleDeleteSurvey(surveyId: string) {
+    console.log(surveyId);
+    this.surveyManagementService.deleteSurvey(surveyId).subscribe({
+      next: response => {
+        if (response.status === 'success') {
+          this.surveys = this.surveys.filter(survey => survey.id !== surveyId);
+          this.notifyService.showSuccess('Survey deleted', 'Survey has been deleted successfully');
+        } else {
+          this.notifyService.showError('Error deleting survey', response.message);
+        }
+      },
+      error: () => {
+        this.notifyService.showError('Error deleting survey', 'An error occurred while trying to delete the survey');
+      }
+    });
   }
   ngOnInit(): void {
     this.surveyQuery.getSurveys().subscribe({
@@ -35,6 +52,7 @@ export class SurveyTableComponent implements OnInit {
       }
     })
   }
+
 
 
 }

@@ -1,70 +1,32 @@
-<div class="flex flex-col items-center w-full gap-4 p-3 mt-8 lg:mt-0">
-  <div class="flex flex-col justify-between w-full pb-4 border-b gap-y-4 sm:flex-row">
-    <h3 class="text-2xl font-semibold">
-      Encuestas
-    </h3>
-    <div class="flex flex-row gap-4">
-      <button
-        class="flex items-center justify-between gap-3 px-4 py-2 text-sm text-white bg-black rounded-md disabled:opacity-20 w-fit">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-adjustments-horizontal">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M14 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-          <path d="M4 6l8 0" />
-          <path d="M16 6l4 0" />
-          <path d="M8 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-          <path d="M4 12l2 0" />
-          <path d="M10 12l10 0" />
-          <path d="M17 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-          <path d="M4 18l11 0" />
-          <path d="M19 18l1 0" />
-        </svg> <span class="block font-semibold w-fit">Filtrar</span>
-      </button>
-      <button
-        class="flex items-center justify-between gap-3 px-4 py-2 text-sm text-white bg-black rounded-md disabled:opacity-20 w-fit">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
-          stroke-linecap="round" stroke-linejoin="round"
-          class="icon icon-tabler size-4 icons-tabler-outline icon-tabler-plus">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M12 5l0 14" />
-          <path d="M5 12l14 0" />
-        </svg> <span class="block font-semibold w-fit">Crear</span>
-      </button>
-    </div>
-  </div>
+<p-table [value]="surveys" class="w-full">
+  <ng-template #header>
+    <tr>
+      <th>Nombre del Departamento</th>
+      <th>Número de Preguntas</th>
+      <th>Número de Opciones de respuesta</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
 
-
-  <p-table [value]="surveys" class="w-full">
-    <ng-template #header>
-      <tr>
-        <th>Nombre del Departamento</th>
-        <th>Número de Preguntas</th>
-        <th>Número de Opciones de respuesta</th>
-        <th>Acciones</th>
-      </tr>
-    </ng-template>
-
-    <ng-template pTemplate="body" let-survey>
-      <tr class="hover:bg-gray-100">
-        <td>{{ survey.departmentEntity.name }}</td>
-        <td>{{ survey.questionEntities.length }}</td>
-        <td>{{ survey.questionEntities[0].answerEntities.length }}</td>
-        <td class="flex gap-4">
-          <button
-            class="flex items-center justify-between gap-3 px-4 py-2 text-sm text-white bg-blue-800 border-4 rounded-md border-blue-700/50 disabled:opacity-20 w-fit">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-              <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-              <path d="M16 5l3 3" />
-            </svg> <span>Editar</span>
-          </button>
-          <button class="px-4 py-2 text-white bg-red-500 rounded-md">Eliminar</button>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
-</div>
+  <ng-template pTemplate="body" let-survey>
+    <tr class="hover:bg-gray-100">
+      <td>{{ survey.departmentEntity.name }}</td>
+      <td>{{ survey.questionEntities.length }}</td>
+      <td class="flex gap-4">
+        <button
+          class="flex items-center justify-between gap-3 px-4 py-2 text-sm text-white bg-blue-800 border-4 rounded-md border-blue-700/50 disabled:opacity-20 w-fit">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+            <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+            <path d="M16 5l3 3" />
+          </svg> <span>Editar</span>
+        </button>
+        <button (click)="handleDeleteSurvey(survey.id)"
+          class="px-4 py-2 text-white bg-red-500 rounded-md">Eliminar</button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
