@@ -22,47 +22,47 @@ export class StepOneComponent {
     student: false,
   }
 
-  firstname: FormControl;
-  lastname: FormControl;
-  documentType: FormControl;
-  documentNumber: FormControl;
-  email: FormControl;
-  phone: FormControl;
-  student: FormControl;
+  firstname: FormControl<string | null>;
+  lastname: FormControl<string | null>;
+  documentType: FormControl<string | null>;
+  documentNumber: FormControl<string | null>;
+  email: FormControl<string | null>;
+  phone: FormControl<string | null>;
+  student: FormControl<boolean | null>;
 
 
-  constructor(public responseService: ResponseService, public stepperService: StepperService) {
-    this.firstname = new FormControl(this.respondentData.firstname, [
+  constructor(private responseService: ResponseService, private stepperService: StepperService) {
+    this.firstname = new FormControl(this.respondentData.firstname || '', [
       Validators.required,
       Validators.maxLength(50),
       Validators.pattern('^[a-zA-Z ]*$'),
     ])
-    this.lastname = new FormControl(this.respondentData.lastname, [
+    this.lastname = new FormControl(this.respondentData.lastname || '', [
       Validators.required,
       Validators.maxLength(50),
       Validators.pattern('^[a-zA-Z ]*$'),
     ])
-    this.documentType = new FormControl(this.respondentData.documentType, [
+    this.documentType = new FormControl(this.respondentData.documentType || '', [
       Validators.required
     ])
-    this.documentNumber = new FormControl(this.respondentData.documentNumber, [
+    this.documentNumber = new FormControl(this.respondentData.documentNumber || '', [
       Validators.required,
       Validators.pattern('^[0-9]*$'),
       Validators.minLength(10),
       Validators.maxLength(20),
     ])
-    this.email = new FormControl(this.respondentData.email, [
+    this.email = new FormControl(this.respondentData.email || '', [
       Validators.required,
       Validators.email,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
     ])
-    this.phone = new FormControl(this.respondentData.phone, [
+    this.phone = new FormControl(this.respondentData.phone || '', [
       Validators.required,
       Validators.pattern('^[0-9]*$'),
       Validators.minLength(10),
       Validators.maxLength(20),
     ])
-    this.student = new FormControl(this.respondentData.student, [
+    this.student = new FormControl(this.respondentData.student ?? false, [
       Validators.required,
     ])
 
@@ -82,7 +82,7 @@ export class StepOneComponent {
       return;
     }
 
-    this.responseService.respondent.firstname = this.firstname.value;
+    this.responseService.respondent.firstname = this.firstname.value ?? '';
 
     Object.assign(this.responseService.respondent, this.respondentForm.value);
 

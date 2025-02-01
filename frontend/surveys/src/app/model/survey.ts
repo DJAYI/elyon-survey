@@ -1,13 +1,13 @@
 export interface Survey {
-  id?: string;
-  departmentEntity?: DepartmentEntity;
+  id: string;
+  departmentEntity: DepartmentEntity;
   questionEntities?: QuestionEntity[];
 }
 
 export interface DepartmentEntity {
-  id?: number;
-  code?: string;
-  name?: string;
+  id: number;
+  code: string;
+  name: string;
 }
 
 export interface QuestionEntity {

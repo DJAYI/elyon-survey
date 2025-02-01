@@ -1,7 +1,7 @@
-<div class="fixed bottom-0 left-0 z-10 flex h-full sm:relative sm:w-max sm:max-w-80">
+<div [ngClass]="{'hide-nav': toggleMenu}"
+  class="fixed bottom-0 left-0 z-10 flex h-full sm:relative sm:w-max sm:max-w-80">
 
-  <nav [ngClass]="{'hide-nav': toggleMenu}"
-    class="flex flex-col items-stretch w-full h-full p-4 text-white transition bg-gray-800">
+  <nav class="flex flex-col items-stretch w-full h-full p-4 text-white transition bg-gray-800">
     <ul class="flex flex-col w-full h-full gap-2">
       <li class="w-full">
         <a [ngClass]="{'bg-gradient-to-tr from-green-400 to-cyan-500 text-blue-950 font-semibold': isTabActive(0), 'hover:bg-gray-700': !isTabActive(0)}"
@@ -75,7 +75,7 @@
 <style>
   nav {
     transform: translateX(0%);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.5s ease-in-out, display 0.5s ease allow-discrete;
 
     @starting-style {
       transform: translateX(-100%);
@@ -83,8 +83,26 @@
   }
 
   .hide-nav {
-    transition: transform 0.3s ease, display 0.3s ease allow-discrete;
+
     transform: translateX(-100%);
-    display: none;
+    transition: transform 0.5s ease-in-out;
+
+    nav {
+      display: none;
+    }
+
+    button {
+      transition: transform 0.5s ease-in-out allow-discrete;
+      transform: translateX(100%);
+
+      @starting-style {
+        transform: translateX(0%);
+      }
+    }
+
+    @starting-style {
+      transform: translateX(0%);
+    }
+
   }
 </style>

@@ -11,14 +11,20 @@ export class SurveyManagementService {
   constructor(private http: HttpClient) { }
 
   public createSurvey(survey: Survey) {
-    return this.http.post<HttpResponse<Survey>>('http://localhost:8080/api/v1/surveys', survey);
+    return this.http.post<HttpResponse<Survey>>('http://localhost:8080/api/v1/surveys', survey, {
+      withCredentials: true
+    });
   }
 
   public updateSurvey(survey: Survey) {
-    return this.http.put<HttpResponse<Survey>>(`http://localhost:8080/api/v1/surveys/${survey.id}`, survey);
+    return this.http.put<HttpResponse<Survey>>(`http://localhost:8080/api/v1/surveys/${survey.id}`, survey, {
+      withCredentials: true
+    });
   }
 
   public deleteSurvey(surveyId: string) {
-    return this.http.delete<HttpResponse<Survey>>(`http://localhost:8080/api/v1/surveys/${surveyId}`);
+    return this.http.delete<HttpResponse<Survey>>(`http://localhost:8080/api/v1/surveys/${surveyId}`, {
+      withCredentials: true
+    });
   }
 }
