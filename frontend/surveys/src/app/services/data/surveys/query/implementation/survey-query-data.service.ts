@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { QuestionEntity, Survey } from '../../../../../model/survey';
+import { QuestionEntity, Survey } from '../../../../../schemas/survey';
 import { NotifyService } from '../../../../utils/notification/notify.service';
 import { SurveyQueryApiService } from '../survey-query-api.service';
 

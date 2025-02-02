@@ -1,0 +1,31 @@
+<main
+  class="relative flex flex-col items-end w-full h-full gap-4 p-3 overflow-y-auto border-t-2 sm:border-t-0 sm:border-s-2 justify-stretch">
+
+  <h3 class="self-start my-2 text-2xl font-semibold">Departamento "{{ departmentSelected }}"</h3>
+
+  <form [formGroup]="formGroup!" class="flex flex-col w-full gap-4">
+    <p-select [options]="departments" formControlName="selectedDepartment" optionLabel="name"
+      placeholder="Selecciona un Departamento" class="w-full"></p-select>
+    <button [disabled]="departmentSelected === null"
+      class="flex items-center self-end justify-between gap-3 px-4 py-2 text-sm text-white bg-black rounded-md disabled:opacity-20 w-fit">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+        stroke-linecap="round" stroke-linejoin="round"
+        class="icon icon-tabler size-4 icons-tabler-outline icon-tabler-plus">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M12 5l0 14" />
+        <path d="M5 12l14 0" />
+      </svg> <span class="block font-semibold w-fit">Añadir Pregunta</span>
+    </button>
+  </form>
+</main>
+
+<style>
+  main {
+    transition: opacity 0.35s ease-in-out;
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+</style>

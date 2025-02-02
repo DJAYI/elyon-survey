@@ -9,11 +9,11 @@ export class StepperService {
   constructor() {
     this.currentStep = 0;
   }
-  handleNextStep() {
+  handleNextStep(): void {
     this.currentStep++;
   }
 
-  handlePreviousStep() {
+  handlePreviousStep(): void {
     this.currentStep--;
   }
 }

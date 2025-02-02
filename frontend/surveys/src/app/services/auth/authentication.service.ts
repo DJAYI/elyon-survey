@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthResponse, LoginUser } from '../../model/auth-response';
+import { AuthResponse, LoginUser } from '../../schemas/auth-response';
 import { NotifyService } from '../utils/notification/notify.service';
 
 const API_ENDPOINTS = {
