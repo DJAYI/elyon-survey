@@ -36,14 +36,15 @@
               <path d="M5 12l14 0" />
             </svg> <span class="block font-semibold w-fit">Crear</span>
             }@else {
+            <span class="block font-semibold w-fit">Volver</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
               stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-              class="icon icon-tabler size-4 icons-tabler-outline icon-tabler-arrow-left">
+              class="rotate-180 icon icon-tabler size-4 icons-tabler-outline icon-tabler-arrow-left">
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <line x1="5" y1="12" x2="19" y2="12" />
               <line x1="5" y1="12" x2="11" y2="18" />
               <line x1="5" y1="12" x2="11" y2="6" />
-            </svg> <span class="block font-semibold w-fit">Volver</span>
+            </svg>
             }
           </button>
         </div>
@@ -52,7 +53,20 @@
     </div>
   </div>
 
-  <div [ngClass]="{'hidden': !showTabEngine}" class="w-full h-full">
+  <nav [ngClass]="{'hidden': !showTabEngine}" class="w-full h-full">
     <app-survey-tab-engine></app-survey-tab-engine>
-  </div>
+  </nav>
 </div>
+
+<style>
+  nav {
+    transition: opacity 0.35s ease-in-out, display 0.35s ease-in-out allow-discrete, transform 0.65s ease-in-out;
+    transform: translateX(0);
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+  }
+</style>
