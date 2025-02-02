@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+
 import { ResponseService } from '../../services/data/response/response.service';
 import { SurveyQueryDataService } from '../../services/data/surveys/query/implementation/survey-query-data.service';
 import { StepperService } from '../../services/utils/stepper/stepper.service';
@@ -35,7 +36,7 @@ export class StepperComponent {
   }
 
   handleSubmitResponse() {
-    this.responseService.handleSendResponse();
+    this.responseService.handleSubmitResponse();
     this.stepperService.currentStep = 0;
   }
 
