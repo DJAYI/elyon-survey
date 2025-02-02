@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Respondent } from '../../../model/survey-response';
+import { Respondent } from '../../../schemas/survey-response';
 import { ResponseService } from '../../../services/data/response/response.service';
 import { StepperService } from '../../../services/utils/stepper/stepper.service';
 

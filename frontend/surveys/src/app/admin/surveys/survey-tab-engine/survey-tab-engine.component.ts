@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Select } from 'primeng/select';
-import { DepartmentEntity, Survey } from '../../../model/survey';
+import { DepartmentEntity, Survey } from '../../../schemas/survey';
 import { DepartmentQueryApiService } from '../../../services/data/department/query/department-query-api.service';
 import { SurveyQueryApiService } from '../../../services/data/surveys/query/survey-query-api.service';
 import { NotifyService } from '../../../services/utils/notification/notify.service';

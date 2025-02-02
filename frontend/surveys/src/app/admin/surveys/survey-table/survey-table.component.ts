@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
-import { DepartmentEntity, Survey } from '../../../model/survey';
+import { DepartmentEntity, Survey } from '../../../schemas/survey';
 import { SurveyManagementService } from '../../../services/data/surveys/management/survey-management.service';
 import { SurveyQueryApiService } from '../../../services/data/surveys/query/survey-query-api.service';
 import { NotifyService } from '../../../services/utils/notification/notify.service';

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Respondent, Response, ResponseSurvey } from '../../../model/survey-response';
+import { Respondent, Response, ResponseSurvey } from '../../../schemas/survey-response';
 import { NotifyService } from '../../utils/notification/notify.service';
 import { StepperService } from '../../utils/stepper/stepper.service';
 import { ResponseQueryDataService } from './response-query-data.service';

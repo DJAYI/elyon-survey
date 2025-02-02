@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Survey } from '../../../../../model/survey';
+import { Survey } from '../../../../../schemas/survey';
 import { SurveyManagementService } from '../survey-management.service';
 
 @Injectable({

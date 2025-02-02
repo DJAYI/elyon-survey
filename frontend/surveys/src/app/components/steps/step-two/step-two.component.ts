@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Survey } from '../../../model/survey';
+import { Survey } from '../../../schemas/survey';
 import { ResponseService } from '../../../services/data/response/response.service';
 import { SurveyQueryApiService } from '../../../services/data/surveys/query/survey-query-api.service';
 import { StepperService } from '../../../services/utils/stepper/stepper.service';
