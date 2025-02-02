@@ -4,7 +4,7 @@ import { QuestionEntity } from '../../../model/survey';
 import { Response } from '../../../model/survey-response';
 import { ResponseService } from '../../../services/data/response/response.service';
 import { SurveyQueryApiService } from '../../../services/data/surveys/query/survey-query-api.service';
-import { StepperService } from '../../../services/stepper/stepper.service';
+import { StepperService } from '../../../services/utils/stepper/stepper.service';
 
 @Component({
   selector: 'app-step-three',

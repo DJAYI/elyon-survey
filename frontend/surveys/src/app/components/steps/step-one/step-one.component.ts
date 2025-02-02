@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Respondent } from '../../../model/survey-response';
 import { ResponseService } from '../../../services/data/response/response.service';
-import { StepperService } from '../../../services/stepper/stepper.service';
+import { StepperService } from '../../../services/utils/stepper/stepper.service';
 
 @Component({
   selector: 'app-step-one',
