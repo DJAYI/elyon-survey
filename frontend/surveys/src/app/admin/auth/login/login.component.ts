@@ -2,11 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { SsrCookieService } from 'ngx-cookie-service-ssr';
-import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { lastValueFrom } from 'rxjs';
 import { AuthenticationService } from '../../../services/auth/authentication.service';
-import { ToastService } from '../../../services/utils/toast/toast.service';
+import { NotifyService } from '../../../services/utils/notification/notify.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +22,12 @@ export class LoginComponent {
   username: FormControl;
   password: FormControl;
 
-  constructor(public authService: AuthenticationService, public cookieService: SsrCookieService, router: Router, public toastService: ToastService, public messageService: MessageService) {
+  constructor(
+    public authService: AuthenticationService,
+    public cookieService: SsrCookieService,
+    router: Router,
+    private notifyService: NotifyService
+  ) {
     this.router = router;
 
     this.username = new FormControl('', [
@@ -44,39 +47,32 @@ export class LoginComponent {
 
   login() {
     if (this.loginForm.valid) {
-      this.showLoadingToast();
-      lastValueFrom(this.authService.login(this.loginForm.value)).then((response) => {
-        if (response) {
-          this.status = true;
-        } else {
+      this.notifyService.showInfo('Logging in', 'Please wait while we log you in');
+
+
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (response) => {
+          if (response) {
+            this.status = true;
+          } else {
+            this.status = false;
+            this.notifyService.showError('Error', 'Invalid credentials');
+          }
+        },
+        error: () => {
           this.status = false;
-        }
-      }).finally(() => {
-        if (this.status) {
-          this.showSuccessToast();
-          this.router.navigate(['/admin']);
-        } else {
-          this.showErrorToast();
+          this.notifyService.showError('Error', 'An error occurred while trying to log in');
+        },
+        complete: () => {
+          if (this.status) {
+            this.notifyService.showSuccess('Success', 'Logged in successfully');
+            this.router.navigate(['/admin']);
+          } else {
+            this.notifyService.showError('Error', 'Invalid credentials');
+          }
         }
       });
     }
-  }
-
-  showSuccessToast() {
-    this.toastService.addToastMessage('success', 'Inicio de sesión exitoso', 'Inicio de sesión exitoso, redirigiendo...');
-    this.toastService.showToasts();
-  }
-
-  showErrorToast() {
-    this.toastService.addToastMessage('error', 'Inicio de sesión fallido', 'Inicio de sesión fallido, verifique sus credenciales');
-    this.toastService.showToasts();
-
-  }
-
-  showLoadingToast() {
-    this.toastService.addToastMessage('info', 'Iniciando sesión', 'Iniciando sesión...');
-    this.toastService.showToasts();
-
   }
 
 }
