@@ -1,7 +1,7 @@
 services:
   frontend:
     build: frontend/surveys
-    mem_limit: 1g
+    mem_limit: 500mb
 
     ports:
       - "4200:4200"
@@ -17,7 +17,7 @@ services:
 
   api_surveys:
     build: backend/surveys
-    mem_limit: 500mb
+    mem_limit: 300mb
     ports:
       - "8080:8080"
     
