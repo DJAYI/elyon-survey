@@ -3,7 +3,7 @@
 
   <div class="w-full h-full">
     <div class="flex flex-col items-center w-full gap-4 p-3 mt-8 lg:mt-0">
-      <div class="flex flex-col justify-between w-full pb-4 border-b gap-y-4 sm:flex-row">
+      <div class="flex flex-col justify-between w-full pb-4 border-b gap-y-4">
         <h3 class="text-2xl font-semibold">
           Encuestas
         </h3>
@@ -36,7 +36,6 @@
               <path d="M5 12l14 0" />
             </svg> <span class="block font-semibold w-fit">Crear</span>
             }@else {
-            <span class="block font-semibold w-fit">Volver</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
               stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
               class="rotate-180 icon icon-tabler size-4 icons-tabler-outline icon-tabler-arrow-left">
@@ -45,11 +44,12 @@
               <line x1="5" y1="12" x2="11" y2="18" />
               <line x1="5" y1="12" x2="11" y2="6" />
             </svg>
+            <span class="block font-semibold w-fit">Volver</span>
             }
           </button>
         </div>
+        <app-survey-table></app-survey-table>
       </div>
-      <app-survey-table></app-survey-table>
     </div>
   </div>
 

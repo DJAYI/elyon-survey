@@ -41,7 +41,7 @@ export class SurveyQueryDataService {
     this.surveyQueryApiService.getSurveyQuestions(surveyId).subscribe({
       next: response => {
         if (response.status === 'success') {
-          this.recoveredQuestions = response.data as QuestionEntity[];
+          this.recoveredQuestions = response.data;
           this.notifyService.showSuccess('Preguntas recuperdas exitosamente', 'Las preguntas de la encuesta han sido recuperadas exitosamente');
         } else {
           this.notifyService.showError('Error recuperando las preguntas de la encuesta seleccionada', response.message);

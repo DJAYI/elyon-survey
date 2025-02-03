@@ -12,12 +12,12 @@ export interface DepartmentEntity {
 
 export interface QuestionEntity {
   id?: number;
-  statement?: string;
-  answerEntities?: AnswerEntity[];
+  statement: string;
+  answerEntities: AnswerEntity[];
 }
 
 export interface AnswerEntity {
   id?: number;
-  statement?: string;
-  value?: number;
+  statement: string;
+  value: number;
 }

@@ -10,8 +10,8 @@ export class SurveyManagementService {
 
   constructor(private http: HttpClient) { }
 
-  public createSurvey(survey: Survey) {
-    return this.http.post<HttpResponse<Survey>>('http://localhost:8080/api/v1/surveys', survey, {
+  public createSurvey(departmentId: number) {
+    return this.http.post<HttpResponse<Survey>>('http://localhost:8080/api/v1/surveys', departmentId, {
       withCredentials: true
     });
   }

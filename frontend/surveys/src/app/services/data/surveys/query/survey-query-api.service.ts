@@ -22,6 +22,6 @@ export class SurveyQueryApiService {
   }
 
   public getSurveyQuestions(surveyId: string) {
-    return this.http.get<HttpResponse<QuestionEntity>>(`${this.host}/${surveyId}/questions`);
+    return this.http.get<HttpResponse<QuestionEntity[]>>(`${this.host}/${surveyId}/questions`);
   }
 }

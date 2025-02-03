@@ -34,7 +34,7 @@ export class StepTwoComponent implements OnInit {
     this.stepperService.handlePreviousStep();
   }
 
-  handleSelectSurvey(surveyId?: string) {
+  handleSelectSurvey(surveyId: string) {
     this.responseService.responseSurvey.surveyId = surveyId;
     this.surveyQueryApiService.getSurveyQuestions(surveyId!);
   }
