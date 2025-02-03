@@ -1,7 +1,7 @@
 services:
   frontend:
     build: frontend/surveys
-    mem_limit: 500mb
+    mem_limit: 1g
 
     ports:
       - "4200:4200"
