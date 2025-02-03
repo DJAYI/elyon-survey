@@ -17,7 +17,7 @@ services:
 
   api_surveys:
     build: backend/surveys
-    mem_limit: 300mb
+    mem_limit: 1g
     ports:
       - "8080:8080"
     
