@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../../../../environments/environment';
 import { HttpResponse } from '../../../../schemas/http-response';
 import { DepartmentEntity } from '../../../../schemas/survey';
 
@@ -7,18 +8,19 @@ import { DepartmentEntity } from '../../../../schemas/survey';
   providedIn: 'root'
 })
 export class DepartmentQueryApiService {
-  host = 'http://localhost:8080/api/v1/departments';
+  apiUrl = environment.API_URL;
+
 
   constructor(private http: HttpClient) { }
 
   public getDepartments() {
-    return this.http.get<HttpResponse<DepartmentEntity[]>>(`${this.host}`, {
+    return this.http.get<HttpResponse<DepartmentEntity[]>>(`${this.apiUrl}departments`, {
       withCredentials: true
     });
   }
 
   public getDepartmentById(id: number) {
-    return this.http.get<HttpResponse<DepartmentEntity>>(`${this.host}/${id}`, {
+    return this.http.get<HttpResponse<DepartmentEntity>>(`${this.apiUrl}departments/${id}`, {
       withCredentials: true
     });
   }
