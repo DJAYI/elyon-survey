@@ -1,18 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 import { AuthResponse, LoginUser } from '../../schemas/auth-response';
 import { NotifyService } from '../utils/notification/notify.service';
 
 const API_ENDPOINTS = {
-  login: 'api/v1/auth/login',
-  logout: 'api/v1/auth/logout',
-  adminCheck: 'api/v1/auth/admin'
+  login: 'login',
+  logout: 'logout',
+  adminCheck: 'admin'
 };
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  private readonly baseUrl = 'http://localhost:8080/';
+  private readonly baseUrl = environment.API_URL + 'auth/';
   private readonly http = inject(HttpClient);
   private readonly router = inject(Router);
   private readonly notifyService = inject(NotifyService);
