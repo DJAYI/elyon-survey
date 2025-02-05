@@ -18,15 +18,16 @@ export const authGuard: CanActivateFn = (_route, state) => {
 
   return authVerification.then(data => {
     if (data) {
+      console.log(data);
       return true;
     } else {
+      console.log(data);
       router.navigate(['/auth/']);
       return false;
     }
-    // }).catch(e => {
-    //   console.log("Error: " + { e });
-    //   router.navigate(['/auth/']);
-    //   return false;
-    // 
+  }).catch(e => {
+    console.log("Error: " + { e });
+    router.navigate(['/auth/']);
+    return false;
   });
 };

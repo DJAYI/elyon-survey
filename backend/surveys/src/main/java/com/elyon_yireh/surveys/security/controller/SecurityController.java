@@ -44,8 +44,7 @@ public class SecurityController {
     @GetMapping("/admin")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Boolean> admin(Authentication authentication) {
-        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
-
+        if (authentication.getAuthorities().stream().anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"))) {
             return ResponseEntity.ok(true);
         }
         return ResponseEntity.ok(false);
