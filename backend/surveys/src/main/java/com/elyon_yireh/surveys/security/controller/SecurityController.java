@@ -12,6 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,10 +44,12 @@ public class SecurityController {
     @GetMapping("/admin")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Boolean> admin(Authentication authentication) {
-        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("READ"))) {
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+
             return ResponseEntity.ok(true);
         }
         return ResponseEntity.ok(false);
+
     }
 
     @PostMapping("/logout")
