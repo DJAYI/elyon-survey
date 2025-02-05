@@ -40,8 +40,7 @@ public class SecurityConfig {
         return httpSecurity
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeRequests(authorizeRequests -> authorizeRequests.anyRequest()
-                        .authenticated())
+
                 .addFilterBefore(new JwtTokenValidator(jwtUtils), BasicAuthenticationFilter.class)
                 .build();
     }
